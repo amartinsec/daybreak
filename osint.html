@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Daybreak Cyber LLC
+Austin Martin -> amartin@amartinec.com -->
+<head>
+    <meta charset="UTF-8">
+    <title>Daybreak Cyber</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="osintcss.css">
+
+</head>
+<body>
+
+    <!-- START NAV BAR ------------------->
+    <nav class="navbar ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!-- EDIT THIS TO FIX ONCE DEPLOYED -->
+                <a class="navbar-brand" href="javascript:history.back()">
+                    <img src="daybreak_sun.png" id="image" width="60" height="60">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">OSINT Tools</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!---------END NAV BAR ---------------------->
+    <div class="d-flex">
+        <!-- The sidebar -->
+        <div class="sidebar">
+            <a class="dork" href="">Google Dorks</a>
+            <a class="dns" href="">DNS</a>
+            <a class="dws" href="">Dark Web Search Engines</a>
+            <a class="outages" href="">Outages</a>
+            <a class="signt" href="">SIGNT Survey</a>
+            <a class="crypto" href="">Cryptocurrency</a>
+            <a class="threats" href="">Threat Lists</a>
+            <a class="ls" href="">Logistics and Shipping</a>
+            <a class="boats" href="">Maritime</a>
+            <a class="planes" href="">Air</a>
+            <a class=publicmon" href="">Public Event Monitoring</a>
+        </div>
+
+        <!-- Page content -->
+        <div id="dorking" class="d-flex flex-column">
+            <form>
+                <div class="form-group">
+                    <label for="txtbox" class="form-label">Keyword to Dork</label>
+                    <input type="text" class="form-control" id="txtbox" name="txtbox" >
+                    <div id="emailHelp" class="form-text"></div>
+                </div>
+                <!-- START OF QUERIES ----------------------------------------------------------------------->
+
+                <button  class="btn btn-primary"  onclick="dork1(txtbox.value)">Logins</button>
+                <button class="btn btn-primary" onclick="dork2(txtbox.value)">Database Files</button>
+                <button type="submit" class="btn btn-primary">Configuration Files</button>
+                <button type="submit" class="btn btn-primary">Open Directories</button>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function dork1(query)
+        {window.open('https://www.google.com/search?q=site:'+query+' inurl:login | inurl:signin | intitle:Login | intitle:sign in | inurl:auth', '_blank');}
+
+        function dork2(query)
+        {window.open('https://www.google.com/search?q=site:'+query+' ext:sql | ext:dbf | ext:mdb', '_blank');}
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Daybreak Cyber LLC
+Austin Martin -> amartin@amartinec.com -->
+    <head>
+        <meta charset="UTF-8">
+        <title>Daybreak Cyber</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="daybreakstyle.css">
+
+    </head>
+    <body>
+
+    <!-- START NAV BAR ------------------->
+    <nav class="navbar ">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                 <!-- <a class="navbar-brand" href="#">Brand</a> -->
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="osint.html">OSINT Tools</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <!---------END NAV BAR ---------------------->
+
+        <div class="hack-slider">
+            <div class="hack-slides">
+                <div class="slide">
+                    <img src="daybreak_sun.png" id="image">
+                    <p style="padding-top: 10px">Daybreak Cyber</p>
+                </div>
+
+            </div>
+            <div class="shapes"></div>
+
+
+            <script>
+                $(function() {
+                    var rnd = function(min, max) {
+                        return Math.random() * (max - min) + min;
+                    };
+
+                    $(".hack-slider").height($(".slide:nth-child(1)", this).height());
+                    $(".slide:first-child", ".hack-slider").addClass('hack first');
+                    $(".slide:last-child", ".hack-slider").addClass('last')
+
+                    function slideEffect() {
+                        var timer = setInterval(function() {
+                            var rdH = parseInt(rnd(40, $(".hack").height())),
+                                rdW = parseInt(rnd(500, $(".hack").width() * 2)),
+                                rdT = parseInt(rnd(0, $(".hack").height() / 2)),
+                                rdL = parseInt(rnd(-500, $(".hack").width() / 2) + 200);
+                            $(".hack-slider .shapes").append('<span class="shape ' + rdH + ' ' + rdW + '" style="top:' + rdT + 'px; left:' + rdL + 'px; width:' + rdW + 'px;height:' + rdH + 'px;"></span>')
+                            $("." + rdH + "." + rdW).each(function() {
+                                $(this).delay(50).slideUp(0, function() {
+                                    $(this).remove();
+                                });
+                            });
+                        }, 100);
+                        setTimeout(function() {
+                            clearInterval(timer)
+                        }, rnd(650,950));
+                    }
+                    window.setInterval(function() {
+                        slideEffect();
+                    }, rnd(1750,3000));
+
+                });
+
+            </script>
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,171 @@
+/* The side navigation menu */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: black;
+    color: rgba(255, 255, 255, .7);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+    display: block;
+    color: rgba(255, 255, 255, .7);
+    padding: 16px;
+    text-decoration: none;
+    font-family: "Consolas";
+    font-size: 18px;
+}
+
+/* Active/current link */
+.sidebar a.active {
+    background-color: black;
+    color: rgba(255, 255, 255, .7);
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+    background-color: black;
+    color: rgba(255, 255, 255, .7);
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+#dorking{
+    background-color: black;
+    width: 50%;
+    height: 90%;
+    left: 25%;
+    display: flex;
+    position: absolute;
+}
+
+
+/*BOILERPLATE CSS BELOW */
+body{
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.hack-slider {
+    width: 70%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}
+
+.nav.navbar-right li a{
+    color: rgba(255, 255, 255, .7);
+    font-family: "Consolas";
+    font-size: 18px;
+}
+
+.hack-slider .slide {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: rgba(255, 255, 255, .7);
+    font-family: "Consolas";
+    display: none;
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, .4);
+    text-align: center;
+}
+
+.hack-slider .shapes .shape {
+    background: #000;
+    position: absolute;
+}
+
+.hack-slider .slide:first-child {
+    display: block;
+}
+
+.hack-slider .arrow:hover {
+    opacity: 1;
+}
+
+body {
+    background: #000;
+    color: rgba(255, 255, 255, .7);
+    font-family: "Consolas";
+}
+
+
+html {
+    overflow: hidden;
+}
+
+ul.nav a:hover {
+    background-color: black;
+}
+
+a {
+    background-color: black;
+}
+.navbar-nav li.active > a {
+    background-color: black;
+
+}
+
+.dropdown-menu{
+    background-color: black;
+}
+
+
+*,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+#image{
+
+    opacity: .875;
+}
+
+
