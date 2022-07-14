@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <!-- Daybreak Cyber LLC
 Austin Martin -> amartin@amartinec.com -->
 <head>
     <meta charset="UTF-8">
-    <title>Daybreak Cyber</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <!-- <link rel="manifest" href="favicon/site.webmanifest"> -->
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <title>Daybreak Cyber | Cybersecurity Services</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -17,14 +24,42 @@ Austin Martin -> amartin@amartinec.com -->
 </head>
 <body>
 
+    <!--MODAL-->
+    <div id="welcomemodal" class="modal fade" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+                </div>
+                <div class="modal-footer">
+                    <form id="modalform">
+                        <div class="form-group form-check">
+                            <input type="checkbox" onclick="change_button(this,'closemodal')" class="form-check-input" id="termscheckbox">
+                            <label class="form-check-label" for="termscheckbox">I agree to the Terms of Use</label>
+                        </div>
+                        <button type="button" id="closemodal" class="btn btn-default" data-dismiss="modal" disabled>Continue</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- START NAV BAR ------------------->
     <nav class="navbar ">
         <div class="container-fluid">
             <div class="navbar-header">
                 <!-- EDIT THIS TO FIX ONCE DEPLOYED -->
-                <a class="navbar-brand" href="javascript:history.back()">
-                    <img src="daybreak_sun.png" id="image" width="60" height="60">
-                </a>
+                <!-- <a class="navbar-brand" href="javascript:history.back()"> -->
+
+                <div class="hack-slider">
+                    <div class="hack-slides">
+                        <div class="slide">
+                            <img src="daybreak_sun.png" id="image">
+                        </div>
+                    <div class="shapes2"></div> <!-- Change class to shapes to add the flicker effect to the logo -->
+                    <!-- <img src="daybreak_sun.png" id="image" width="60" height="60"> -->
+                </div>
+                </div>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
                 <ul class="nav navbar-nav navbar-right">
@@ -33,7 +68,7 @@ Austin Martin -> amartin@amartinec.com -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">OSINT Tools</a></li>
+                            <li><a href="#">OSINT Tool</a></li>
                             <li><a href="#">Blog</a></li>
                         </ul>
                     </li>
@@ -62,28 +97,656 @@ Austin Martin -> amartin@amartinec.com -->
 
         <!-- Page content -->
         <div id="dorking" class="d-flex flex-column">
-            <form>
+            <form id="dorkform">
                 <div class="form-group">
-                    <label for="txtbox" class="form-label">Keyword to Dork</label>
-                    <input type="text" class="form-control" id="txtbox" name="txtbox" >
+                    <label for="txtbox" class="form-label">Target Domain</label>
+                    <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
                     <div id="emailHelp" class="form-text"></div>
                 </div>
                 <!-- START OF QUERIES ----------------------------------------------------------------------->
+                <br>
 
-                <button  class="btn btn-primary"  onclick="dork1(txtbox.value)">Logins</button>
-                <button class="btn btn-primary" onclick="dork2(txtbox.value)">Database Files</button>
-                <button type="submit" class="btn btn-primary">Configuration Files</button>
-                <button type="submit" class="btn btn-primary">Open Directories</button>
+                <div class="container-fluid" id="dorkcontainer">
+                    <div id="dorklist" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="commondid">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#faq" href="#commond" aria-expanded="false" aria-controls="commond">
+                                        Common Dorks (Domain Specific Queries)
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="commond" class="panel-collapse collapse" role="tabpanel" aria-labelledby="commond">
+                                <div class="panel-body">
+
+                                    <button  class="btn btn-primary"  onclick="dork14(txtbox.value)">Office 365 Info</button>
+                                    <button  class="btn btn-primary"  onclick="dork1(txtbox.value)">Logins</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork4(txtbox.value)">Exposed Documents</button>
+                                    <button class="btn btn-primary" onclick="dork2(txtbox.value)">Database Files</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork3(txtbox.value)">Configuration Files</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork5(txtbox.value)">Open Directories</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork6(txtbox.value)">Backup Files</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork7(txtbox.value)">Pastes Sites</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork8(txtbox.value)">WordPress Directories</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork9(txtbox.value)">SQL Errors</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork10(txtbox.value)">Logs</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork11(txtbox.value)">Upload Endpoints</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork12(txtbox.value)">phpinfo.php</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork13(txtbox.value)">Subdomains</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork15(txtbox.value)">FTP Servers</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork16(txtbox.value)">VPN</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork17(txtbox.value)">Robots.txt</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork29(txtbox.value)">Security.txt</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork84(txtbox.value)">Admin Logins</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="cloudtop">
+                                <h5 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#cloudd" aria-expanded="false" aria-controls="cloudd">
+                                        Cloud Dorks
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="cloudd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="commond">
+                                <div class="panel-body">
+                                    <button type="submit" class="btn btn-primary" onclick="dork18()">/aws</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork19()">/awstats</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork20()">/aws/credentials</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork21()">Pastes Containing AWS_Secret_Key</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork22()">AWS Config Files</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork23()">Sensitive Spreadsheets Stored In AWS</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork24()">.env Files Containing Secret Keys</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork25()">/aws.s3/</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork26()">Cloud SQL Files</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork27()">Azure Secrets</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork28()">Azure Blob Storage</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="webtop">
+                                <h5 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#webd" aria-expanded="false" aria-controls="webd">
+                                        Web Vulnerabilities
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="webd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="webd">
+                                <div class="panel-body">
+                                    <button type="submit" class="btn btn-primary" onclick="dork29()">cs.html Open Redirect</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork30()">Kibana Dashboards</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork31()">XML Files Within The Admin Dir</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork32()">Lync Server Autodiscover</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork37()">Misconfigured Bamboo</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork40()">Jira Dashboards</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork41()">Exposed Radius Server Keys</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork42()">Wordpress Installation</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork44()">URLstatusgo Open Redirect</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork45()">Wordpress Apps With Registration</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork46()">Open Sidekiq (Ruby) Dashboards</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork47()">Unauthenticated File Uploads (FCKeditor)</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork52()">Tiny_mce RCE</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork53()">Unauthenticated File Uploads (Filechucker)</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork57()">go.cgi Open Redirect</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork62()">Unauthenticated File Uploads (Liferay)</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork63()">Generic Unauthenticated File Uploads</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork82()">Generic Unauthenticated File Uploads 2</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork43()">PHPmyadmin</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork85()">Public SQL Dumps</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="shelltop">
+                                <h5 class="panel-title">
+                                    <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#shelld" aria-expanded="false" aria-controls="shelld">
+                                        Web Shells
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="shelld" class="panel-collapse collapse" role="tabpanel" aria-labelledby="shelld">
+                                <div class="panel-body">
+                                    <button type="submit" class="btn btn-primary" onclick="dork33()">Mini Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork34()">C99 Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork35()">C100 Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork36()">SSI Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork39()">1945 Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork48()">M3R1C4 Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork49()">Generic WordPress Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork50()">PHPSpy Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork51()">Mister Spy Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork54()">JSPSpy Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork55()">ISR-Stealer Botnet Login Panels</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork56()">Generic Botnet Login Panels</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork58()">Generic WordPress Web Shell 2</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork59()">Generic ASP Web Shell 2</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork60()">Generic Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork61()">File Manager Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork64()">Nstview Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork65()">Hamdida X Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork66()">3xp1r3 Cyber Army Auto cPanel Cracker</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork67()">Private Uploader Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork68()">Angel Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork69()">ASPXSpy Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork70()">b374k Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork71()">WSO Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork72()">Crime24-Stealer Logs</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork73()">BLaSTER Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork74()">SN0X Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork75()">Pouya/3fexe/Smart Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork76()">WSO Web Shell 2</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork77()">1n73ct10n Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork78()">Ghost-DZ Uploader Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork79()">133w0rm cPanel Cracker</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork80()">r00t Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork81()">Priv8 Defacer</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork83()">HAXPLORER Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork87()">PHPKonsole Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork89()">R57 Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork90()">Cyber Anarchy Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork91()">Locus7 Web Shell</button>
+                                    <button type="submit" class="btn btn-primary" onclick="dork92()">Generic PHP Web Shell</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
 
     <script type="text/javascript">
+
+
+        //welcome modal+instructions logic
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+
+        function showModal() {
+            setCookie('shown', 'true', 1);
+            $("#welcomemodal").modal('show');
+        }
+
+        (function () {
+            var cookie = getCookie('shown');
+            if (!cookie) {
+                showModal();
+                $(".form-check").prop('checked', false).parent().removeClass('active');
+
+            }
+        })();
+
+        function change_button(checkbx,button_id) {
+            var btn = document.getElementById(button_id);
+            if (checkbx.checked == true) {
+                $("#closemodal").prop( "disabled", false );
+            } else {
+                $("#closemodal").prop( "disabled", true );
+            }
+        }
+
+        //End modal decision logic
+
+
+
+        //Saves the target domain/url in local storage so it does not need to be retyped
+        //Does not send any info to the server
+        document.getElementById("txtbox").value = getSavedValue("txtbox");
+        function saveValue(e){
+            var id = e.id;
+            var val = e.value;
+            localStorage.setItem(id, val);//
+        }
+        function getSavedValue  (v){
+            if (!localStorage.getItem(v)) {
+                return "";
+            }
+            return localStorage.getItem(v);
+        }
+        //End Save value logic
+
+        //Verify that at least domain was entered for specific dorks
+        function validate(input) {
+            var val = input;
+            val = val.replace(/(^\w+:|^)\/\//, '');;
+            if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(val)) {
+                return true;
+            } else {
+                alert("This dork requires at least a domain name to run. Please retry the query.")
+                return false;
+            }
+        }
+
         function dork1(query)
-        {window.open('https://www.google.com/search?q=site:'+query+' inurl:login | inurl:signin | intitle:Login | intitle:sign in | inurl:auth', '_blank');}
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+' inurl:login | inurl:signin | intitle:Login | intitle:sign in | inurl:auth', '_blank');
+            }
+        }
 
         function dork2(query)
-        {window.open('https://www.google.com/search?q=site:'+query+' ext:sql | ext:dbf | ext:mdb', '_blank');}
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+' ext:sql | ext:dbf | ext:mdb', '_blank');
+            }
+        }
+
+        function dork3(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+' +ext:xml+|+ext:conf+|+ext:cnf+|+ext:reg+|+ext:inf+|+ext:rdp+|+ext:cfg+|+ext:txt+|+ext:ora+|+ext:ini+|+ext:env', '_blank');
+            }
+        }
+
+        function dork4(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+' ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv', '_blank');
+            }
+        }
+
+        function dork5(query)
+        {
+            if (validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:' + query + ' intitle:index.of', '_blank');
+            }
+        }
+
+        function dork6(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:' + query + ' ext:bkf | ext:bkp | ext:bak | ext:old | ext:backup', '_blank');
+            }
+        }
+
+        function dork7(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q= site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org  | site:codeshare.io | site:trello.com ' + query, '_blank');
+            }
+        }
+        function dork8(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+' inurl:wp- OR inurl:plugin OR inurl:upload OR inurl:download","wordpress.txt', '_blank');
+            }
+        }
+
+        function dork9(query)
+        {
+            if (validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:' + query + ' intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"', '_blank');
+            }
+        }
+
+        function dork10(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+'  ext:log', '_blank');
+            }
+        }
+
+        function dork11(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+'  inurl:upload', '_blank');
+            }
+        }
+
+        function dork12(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+'  ext:php intitle:phpinfo "published by the PHP Group"', '_blank');
+            }
+        }
+
+        function dork13(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:*.'+query, '_blank');
+            }
+        }
+
+        function dork14(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://login.microsoftonline.com/getuserrealm.srf?login=username@'+query+'&xml=1', '_blank');
+            }
+        }
+
+        function dork15(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+'  intitle:"index of" inurl:ftp', '_blank');
+            }
+        }
+
+        function dork16(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=inurl:vpn.'+query, '_blank');
+            }
+        }
+
+        function dork17(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=inurl:'+query+ ' "robots.txt" filetype:txt', '_blank');
+            }
+        }
+
+        function dork29(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=inurl:'+query+ ' "security.txt" filetype:txt', '_blank');
+            }
+        }
+
+        function dork43(query)
+        {
+            if (validate(query)) {
+                window.open('https://www.google.com/search?q=site:' + query + '  inurl:/phpmyadmin/index.php?db=', '_blank');
+
+            }
+        }
+
+        function dork84(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://www.google.com/search?q=site:'+query+' intitle:admin intitle:login', '_blank');
+            }
+        }
+
+
+        //Start Cloud Dorks
+        function dork18()
+        {window.open('https://www.google.com/search?q=intitle:"index of" aws/', '_blank');}
+
+        function dork19()
+        {window.open('https://www.google.com/search?q=intitle:"index of"awstats', '_blank');}
+
+        function dork20()
+        {window.open('https://www.google.com/search?q=intitle:index of "aws/credentials"', '_blank');}
+
+        function dork21()
+        {window.open('https://www.google.com/search?q=site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org  | site:codeshare.io | site:trello.com "AWS_ACCESS_KEY"', '_blank');}
+
+        function dork22()
+        {window.open('https://www.google.com/search?q=intitle:"index of" "aws-config.php" | "awsconfig.json" ', '_blank');}
+
+        function dork23()
+        {window.open('https://www.google.com/search?q=site:amazonaws.com filetype:xls | filetype:xlsx | filetype:csv "login"|"password"', '_blank');}
+
+        function dork24()
+        {window.open('https://www.google.com/search?q=filetype:env intext:AWS_SECRET', '_blank');}
+
+        function dork25()
+        {window.open('https://www.google.com/search?q=intitle:"index of" "/aws.s3/"', '_blank');}
+
+        function dork26()
+        {window.open('https://www.google.com/search?q=site:amazonaws.com filetype:sql', '_blank');}
+
+        function dork27()
+        {window.open('https://www.google.com/search?q=site:"dev.azure.com" intext:apikey | intext:password intext:secret', '_blank');}
+
+        function dork28()
+        {window.open('https://www.google.com/search?q=site:blob.core.windows.net', '_blank');}
+
+
+        //Start Web Vulns
+        function dork29()
+        {window.open('https://www.google.com/search?q=inurl:"cs.html?url="', '_blank');}
+
+        function dork30()
+        {window.open('https://www.google.com/search?q=inurl:/app/kibana "Kibana" -discuss -ipaddress -git', '_blank');}
+
+        function dork31()
+        {window.open('https://www.google.com/search?q=intitle:"index of" "admin/xml"', '_blank');}
+
+        function dork32()
+        {window.open('https://www.google.com/search?q=allinurl:XFrame.html', '_blank');}
+
+        function dork37()
+        {window.open('https://www.google.com/search?q=site:bamboo.*.* ext:action build', '_blank');}
+
+        function dork40()
+        {window.open('https://www.google.com/search?q=inurl:"/plugins/servlet/Wallboard/"', '_blank');}
+
+        function dork41()
+        {window.open('https://www.google.com/search?q="radius-server key" ext:cfg OR ext:log OR ext:txt', '_blank');}
+
+        function dork42()
+        {window.open('https://www.google.com/search?q=site:*/wp-admin/install.php intitle:WordPress Installation', '_blank');}
+
+        function dork44()
+        {window.open('https://www.google.com/search?q=inurl:"urlstatusgo.html?url=" -intext:"Disallowed by URL filter"', '_blank');}
+
+        function dork45()
+        {window.open('https://www.google.com/search?q=inurl:wp-login.php?action=register', '_blank');}
+
+        function dork46()
+        {window.open('https://www.google.com/search?q=inurl:"/sidekiq/busy"', '_blank');}
+
+        function dork47()
+        {window.open('https://www.google.com/search?q=intitle:"FCKeditor - Uploaders Tests" | intitle:"FCKeditor - Connectors Tests"', '_blank');}
+
+        function dork52()
+        {window.open('https://www.google.com/search?q=inurl:"/tiny_mce/plugins/ajaxfilemanager/inc/data.php" | inurl:"/tiny_mce/plugins/ajaxfilemanager/ajax_create_folder.php" -github', '_blank');}
+
+        function dork53()
+        {window.open('https://www.google.com/search?q=intitle:Upload inurl:/cgi-bin/filechucker.cgi', '_blank');}
+
+        function dork57()
+        {window.open('https://www.google.com/search?q=inurl:"go.cgi?url="', '_blank');}
+
+        function dork62()
+        {window.open('https://www.google.com/search?q=inurl:"html/js/editor/ckeditor/"', '_blank');}
+
+        function dork63()
+        {window.open('https://www.google.com/search?q="You have selected the following files for upload (0 Files)."', '_blank');}
+
+        function dork82()
+        {window.open('https://www.google.com/search?q="index of /" ( upload.cfm | upload.asp | upload.php | upload.cgi | upload.jsp | upload.pl )', '_blank');}
+
+        function dork85()
+        {window.open('https://www.google.com/search?q=intext:"Dumping data for table"', '_blank');}
+
+
+        //Start Web Shells
+        function dork33()
+        {window.open('https://www.google.com/search?q=intitle:"Mini Shell" intext:"Upload File" -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork34()
+        {window.open('https://www.google.com/search?q=intitle:"Index of" intext:c99.txt -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest' , '_blank');}
+
+        function dork35()
+        {window.open('https://www.google.com/search?q=intitle:"Index of" intext:c100.txt -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork36()
+        {window.open('https://www.google.com/search?q=intitle:"SSI Web Shell" AND intext:"ls -al" -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork39()
+        {window.open('https://www.google.com/search?q=intitle:"freedom is real - 1945" -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork48()
+        {window.open('https://www.google.com/search?q=intext:"M3R1C4 SHELL BACKDOOR" -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork49()
+        {window.open('https://www.google.com/search?q="index of" /wp-content/uploads/shell.php -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork50()
+        {window.open('https://www.google.com/search?q="File Manager - Current disk free" -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork51()
+        {window.open('https://www.google.com/search?q=inurl:"Mister Spy" | intext:"Mister Spy" intext:"Souheyl Bypass Shell"  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork54()
+        {window.open('https://www.google.com/search?q=ext:jsp intext:"jspspy" intitle:"Jspspy web~shell V1.0"  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork55()
+        {window.open('https://www.google.com/search?q="Sorting Logs:" "Please enter your password" "Powered By" -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork56()
+        {window.open('https://www.google.com/search?q="intitle:"Authorization" "TF" inurl:"admin.php" -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork58()
+        {window.open('https://www.google.com/search?q=ext:php inurl:/wp-content/uploads/AAPL/loaders/ -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork59()
+        {window.open('https://www.google.com/search?q=inurl:?filesrc=**** "Current" "asp" -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork60()
+        {window.open('https://www.google.com/search?q=inurl:"?filesrc=//" "Upload" admin -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork61()
+        {window.open('https://www.google.com/search?q="File Manager Version 1.0" "Coded By" admin -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox -inurl:izulthea -inurl:cybersecuritywebtest', '_blank');}
+
+        function dork64()
+        {window.open('https://www.google.com/search?q=intitle:"nstview v2.1:: nst.void.ru" | intext:"nsTView v2.1 :: nst.void.ru. Password: Host:" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork65()
+        {window.open('https://www.google.com/search?q=intitle:"Hamdida X_Shell Backd00r" -inurl:google-dorking -inurl:urlscan -inurl:alamy -inurl:izulthea -inurl:cybersecuritywebtest -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork66()
+        {window.open('https://www.google.com/search?q=intitle:"Automatic cPanel Finder/Cracker | 3xp1r3 Cyber Army" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork67()
+        {window.open('https://www.google.com/search?q=intext:Developed By Black.Hack3r ext:php -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork68()
+        {window.open('https://www.google.com/search?q=intext:"Sw Bilgi" ext:php -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork69()
+        {window.open('https://www.google.com/search?q=ext:aspx intitle:aspxspy -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork70()
+        {window.open('https://www.google.com/search?q=ext:php intitle:"b374k" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork71()
+        {window.open('https://www.google.com/search?q=intitle:"WSO " ext:php intext:"server ip" intext:" [ home ]" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork72()
+        {window.open('https://www.google.com/search?q=intext:"crime24-stealer" ext:txt -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork73()
+        {window.open('https://www.google.com/search?q=intext:"Thehacker - Agd_Scorp - BLaSTER - Cr@zy_King - KinSize - JeXToXiC - s3f4 - rx5" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork74()
+        {window.open('https://www.google.com/search?q=intitle:SN0X SHELL: WEEEEEEEEEEEEEEEEED -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork75()
+        {window.open('https://www.google.com/search?q=ext:asp intext:Smart.Shell 1.0 BY P0Uy@_$3r\\/3R -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork76()
+        {window.open('https://www.google.com/search?q=intitle:"WSO" [ Sec. Info ], [ Files ], [ Console ], [ Sql ], [ Php ], [ Safe mode ], [ String tools ], [ Bruteforce ], [ Network ], [ Self remove ] -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork77()
+        {window.open('https://www.google.com/search?q=intitle:"=[ 1n73ct10n privat shell ]=" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork78()
+        {window.open('https://www.google.com/search?q=intitle:"uploader by ghost-dz" ext:php -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork79()
+        {window.open('https://www.google.com/search?q=inurl:1337w0rm.php intitle:1337w0rm -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork80()
+        {window.open('https://www.google.com/search?q=inurl:"r00t.php" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork81()
+        {window.open('https://www.google.com/search?q=intitle:"Priv8 SCR" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork83()
+        {window.open('https://www.google.com/search?q=filetype:php HAXPLORER "Server Files Browser" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork87()
+        {window.open('https://www.google.com/search?q=PHPKonsole PHPShell filetype:php  -inurl:php.net -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork89()
+        {window.open('https://www.google.com/search?q=intitle:r57shell -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork90()
+        {window.open('https://www.google.com/search?q=intitle:"cyber anarchy shell" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork91()
+        {window.open('https://www.google.com/search?q=intitle:Locus7shell intext:"Software:" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+        function dork92()
+        {window.open('https://www.google.com/search?q=intitle:"index of" "shell.php" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+
+
+        //SCRIPT FOR DAYBREAK EFFECT
+        $(function() {
+            var rnd = function(min, max) {
+                return Math.random() * (max - min) + min;
+            };
+
+            $(".hack-slider").height($(".slide:nth-child(1)", this).height());
+            $(".slide:first-child", ".hack-slider").addClass('hack first');
+            $(".slide:last-child", ".hack-slider").addClass('last')
+
+            function slideEffect() {
+                var timer = setInterval(function() {
+                    var rdH = parseInt(rnd(40, $(".hack").height())),
+                        rdW = parseInt(rnd(800, $(".hack").width() * 2)),
+                        rdT = parseInt(rnd(0, $(".hack").height() / 2)),
+                        rdL = parseInt(rnd(-500, $(".hack").width() / 2) + 200);
+                    $(".hack-slider .shapes").append('<span class="shape ' + rdH + ' ' + rdW + '" style="top:' + rdT + 'px; left:' + rdL + 'px; width:' + rdW + 'px;height:' + rdH + 'px;"></span>')
+                    $("." + rdH + "." + rdW).each(function() {
+                        $(this).delay(50).slideUp(0, function() {
+                            $(this).remove();
+                        });
+                    });
+                }, 100);
+                setTimeout(function() {
+                    clearInterval(timer)
+                }, rnd(650,650));
+            }
+            window.setInterval(function() {
+                slideEffect();
+            }, rnd(1750,1751));
+
+        });
+
     </script>
 </body>
 </html>

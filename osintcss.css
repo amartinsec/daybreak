@@ -60,9 +60,9 @@ div.content {
 
 #dorking{
     background-color: black;
-    width: 50%;
+    width: 60%;
     height: 90%;
-    left: 25%;
+    left: 20%;
     display: flex;
     position: absolute;
 }
@@ -80,17 +80,20 @@ body{
 
 .hack-slider {
     width: 70%;
-    position: absolute;
-    top: 25%;
-    left: 50%;
     transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+    height: 0px !important;
+
 
 }
 
 .dropdown:hover>.dropdown-menu {
     display: block;
+}
+
+.btn{
+    margin-bottom: 10px !important;
 }
 
 .nav.navbar-right li a{
@@ -132,7 +135,7 @@ body {
 
 
 html {
-    overflow: hidden;
+    overflow: auto;
 }
 
 ul.nav a:hover {
@@ -164,8 +167,46 @@ a {
 }
 
 #image{
-
+    width: 60px;
     opacity: .875;
 }
 
+#dorkform{
+    width:100%;
+}
 
+#dorkcontainer{
+    padding-left:0;
+    padding-right:0;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+}
+.panel-default>.panel-heading{
+    background-color:black;
+    color: rgba(255, 255, 255, .7);
+
+}
+
+.panel{
+    border:0;
+
+}
+
+.panel-body{
+    background-color:black;
+}
+
+.panel-title a {
+    display: block;
+    padding: 10px 15px;
+    margin: -10px -15px;
+}
+
+#welcomemodal{
+    color: black;
+}
