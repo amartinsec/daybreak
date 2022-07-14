@@ -44,6 +44,25 @@ Austin Martin -> amartin@amartinec.com -->
         </div>
     </div>
 
+    <!--How to Google dork MODAL-->
+    <div id="dorkingtut" class="modal fade" >
+        <div class="modal-dialog">
+            <div class="modal-content" style="color:black">
+                <div class="modal-header">
+                    <b class="modal-title">Google Dorking</b>
+                </div>
+                <div class="modal-body">
+                    <p>blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</p>
+                </div>
+                <div class="modal-footer">
+                    <form id="modaltutform">
+                        <button type="button" id="closetutmodal" class="btn btn-default" data-dismiss="modal" >Continue</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- START NAV BAR ------------------->
     <nav class="navbar ">
@@ -84,6 +103,7 @@ Austin Martin -> amartin@amartinec.com -->
         <!-- The sidebar -->
         <div class="sidebar">
             <a class="dork" href="">Google Dorks</a>
+            <a class="tansom" href="">Ransomware</a>
             <a class="dns" href="">DNS</a>
             <a class="dws" href="">Dark Web Search Engines</a>
             <a class="outages" href="">Outages</a>
@@ -101,9 +121,15 @@ Austin Martin -> amartin@amartinec.com -->
             <form id="dorkform">
                 <div class="form-group">
                     <label for="txtbox" class="form-label">Target Domain/URL</label>
-                    <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
+                            <span class="input-group-btn">
+                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Perform Google Dorking</button>
+                            </span>
+                        </div>
                     <div id="emailHelp" class="form-text"></div>
                 </div>
+
                 <!--MODAL WARNING FOR NON DORK -->
                 <div id="nondorkwarning" class="modal fade">
                     <div class="modal-dialog">
@@ -124,6 +150,7 @@ Austin Martin -> amartin@amartinec.com -->
                     </div>
                 </div>
                 <!--END MODAL WARNING FOR NON DORK -->
+
                 <!-- START OF QUERIES ----------------------------------------------------------------------->
                 <br>
                 <div class="container-fluid" id="dorkcontainer">
@@ -131,7 +158,7 @@ Austin Martin -> amartin@amartinec.com -->
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="commondid">
                                 <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#faq" href="#commond" aria-expanded="false" aria-controls="commond">
+                                    <a data-toggle="collapse" class="collapsed panelss" data-parent="#faq" href="#commond" aria-expanded="false" aria-controls="commond">
                                         Common Dorks (Domain Specific Queries)
                                     </a>
                                 </h5>
@@ -164,7 +191,7 @@ Austin Martin -> amartin@amartinec.com -->
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="cloudtop">
                                 <h5 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#cloudd" aria-expanded="false" aria-controls="cloudd">
+                                    <a class="collapsed panelss" data-toggle="collapse" data-parent="#faq" href="#cloudd" aria-expanded="false" aria-controls="cloudd">
                                         Cloud Dorks
                                     </a>
                                 </h5>
@@ -189,14 +216,14 @@ Austin Martin -> amartin@amartinec.com -->
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="webtop">
                                 <h5 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#webd" aria-expanded="false" aria-controls="webd">
+                                    <a class="collapsed panelss" data-toggle="collapse" data-parent="#faq" href="#webd" aria-expanded="false" aria-controls="webd">
                                         Web Vulnerabilities
                                     </a>
                                 </h5>
                             </div>
                             <div id="webd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="webd">
                                 <div class="panel-body">
-                                    <button type="button" class="btn btn-primary" onclick="dork29()">cs.html Open Redirect</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork93()">cs.html Open Redirect</button>
                                     <button type="button" class="btn btn-primary" onclick="dork30()">Kibana Dashboards</button>
                                     <button type="button" class="btn btn-primary" onclick="dork31()">XML Files Within The Admin Dir</button>
                                     <button type="button" class="btn btn-primary" onclick="dork32()">Lync Server Autodiscover</button>
@@ -223,7 +250,7 @@ Austin Martin -> amartin@amartinec.com -->
                         <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="shelltop">
                                 <h5 class="panel-title">
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#faq" href="#shelld" aria-expanded="false" aria-controls="shelld">
+                                    <a class="collapsed panelss" data-toggle="collapse" data-parent="#faq" href="#shelld" aria-expanded="false" aria-controls="shelld">
                                         Web Shells
                                     </a>
                                 </h5>
@@ -308,6 +335,11 @@ Austin Martin -> amartin@amartinec.com -->
         //modal to warn user they are hitting the site directly
         function showWarningModal() {
             $("#nondorkwarning").modal('show')
+        }
+
+        //modal for dorking tutorial
+        function showtutmodal() {
+            $("#dorkingtut").modal('show')
         }
 
         (function () {
@@ -450,7 +482,7 @@ Austin Martin -> amartin@amartinec.com -->
         {
             if(validate(query))
             {
-                window.open('https://www.google.com/search?q= site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org  | site:codeshare.io | site:trello.com ' + query, '_blank');
+                window.open('https://www.google.com/search?q= site:pastebin.com | site:paste2.org | site:pastehtml.com  | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:paste.debian.net | site:paste.org | site:paste.org.ru ' + query, '_blank');
             }
         }
         function dork8(query)
@@ -586,7 +618,7 @@ Austin Martin -> amartin@amartinec.com -->
 
 
         //Start Web Vulns
-        function dork29()
+        function dork93()
         {window.open('https://www.google.com/search?q=inurl:"cs.html?url="', '_blank');}
 
         function dork30()
