@@ -24,7 +24,7 @@ Austin Martin -> amartin@amartinec.com -->
 </head>
 <body>
 
-    <!--MODAL-->
+    <!--Initial Session MODAL-->
     <div id="welcomemodal" class="modal fade" data-keyboard="false" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -43,6 +43,7 @@ Austin Martin -> amartin@amartinec.com -->
             </div>
         </div>
     </div>
+
 
     <!-- START NAV BAR ------------------->
     <nav class="navbar ">
@@ -99,13 +100,32 @@ Austin Martin -> amartin@amartinec.com -->
         <div id="dorking" class="d-flex flex-column">
             <form id="dorkform">
                 <div class="form-group">
-                    <label for="txtbox" class="form-label">Target Domain</label>
+                    <label for="txtbox" class="form-label">Target Domain/URL</label>
                     <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
                     <div id="emailHelp" class="form-text"></div>
                 </div>
+                <!--MODAL WARNING FOR NON DORK -->
+                <div id="nondorkwarning" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <b class="modal-title">Warning - this query is not a Google dork. See request below</b>
+                            </div>
+                            <div class="modal-body" id="warningmodalbody" style="overflow: hidden">
+                                <p>
+                                    <span>This will request to https://login.microsoftonline.com/getuserrealm.srf?login=username@</span>
+                                    <span id="listdomaininmodal"></span>
+                                    <span>&xml=1 to gain O365 information</span>
+                                </p>
+                                <button type="button" id="passwarning" class="btn btn-default" data-dismiss="modal" onclick="dork14(txtbox.value);"
+                                style="display: block;float: right;margin-top: 2%;">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--END MODAL WARNING FOR NON DORK -->
                 <!-- START OF QUERIES ----------------------------------------------------------------------->
                 <br>
-
                 <div class="container-fluid" id="dorkcontainer">
                     <div id="dorklist" role="tablist" aria-multiselectable="true">
                         <div class="panel panel-default">
@@ -118,26 +138,25 @@ Austin Martin -> amartin@amartinec.com -->
                             </div>
                             <div id="commond" class="panel-collapse collapse" role="tabpanel" aria-labelledby="commond">
                                 <div class="panel-body">
-
-                                    <button  class="btn btn-primary"  onclick="dork14(txtbox.value)">Office 365 Info</button>
-                                    <button  class="btn btn-primary"  onclick="dork1(txtbox.value)">Logins</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork4(txtbox.value)">Exposed Documents</button>
-                                    <button class="btn btn-primary" onclick="dork2(txtbox.value)">Database Files</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork3(txtbox.value)">Configuration Files</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork5(txtbox.value)">Open Directories</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork6(txtbox.value)">Backup Files</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork7(txtbox.value)">Pastes Sites</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork8(txtbox.value)">WordPress Directories</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork9(txtbox.value)">SQL Errors</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork10(txtbox.value)">Logs</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork11(txtbox.value)">Upload Endpoints</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork12(txtbox.value)">phpinfo.php</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork13(txtbox.value)">Subdomains</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork15(txtbox.value)">FTP Servers</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork16(txtbox.value)">VPN</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork17(txtbox.value)">Robots.txt</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork29(txtbox.value)">Security.txt</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork84(txtbox.value)">Admin Logins</button>
+                                    <button type="button" class="btn btn-primary"  onclick="returndomain(txtbox.value); showWarningModal(); return false;">Office 365 Info</button>
+                                    <button type="button" class="btn btn-primary"  onclick="dork1(txtbox.value)">Logins</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork4(txtbox.value)">Exposed Documents</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork2(txtbox.value)">Database Files</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork3(txtbox.value)">Configuration Files</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork5(txtbox.value)">Open Directories</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork6(txtbox.value)">Backup Files</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork7(txtbox.value)">Pastes Sites</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork8(txtbox.value)">WordPress Directories</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork9(txtbox.value)">SQL Errors</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork10(txtbox.value)">Logs</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork11(txtbox.value)">Upload Endpoints</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork12(txtbox.value)">phpinfo.php</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork13(txtbox.value)">Subdomains</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork15(txtbox.value)">FTP Servers</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork16(txtbox.value)">VPN</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork17(txtbox.value)">Robots.txt</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork29(txtbox.value)">Security.txt</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork84(txtbox.value)">Admin Logins</button>
                                 </div>
                             </div>
                         </div>
@@ -152,17 +171,17 @@ Austin Martin -> amartin@amartinec.com -->
                             </div>
                             <div id="cloudd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="commond">
                                 <div class="panel-body">
-                                    <button type="submit" class="btn btn-primary" onclick="dork18()">/aws</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork19()">/awstats</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork20()">/aws/credentials</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork21()">Pastes Containing AWS_Secret_Key</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork22()">AWS Config Files</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork23()">Sensitive Spreadsheets Stored In AWS</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork24()">.env Files Containing Secret Keys</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork25()">/aws.s3/</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork26()">Cloud SQL Files</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork27()">Azure Secrets</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork28()">Azure Blob Storage</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork18()">/aws</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork19()">/awstats</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork20()">/aws/credentials</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork21()">Pastes Containing AWS_Secret_Key</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork22()">AWS Config Files</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork23()">Sensitive Spreadsheets Stored In AWS</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork24()">.env Files Containing Secret Keys</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork25()">/aws.s3/</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork26()">Cloud SQL Files</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork27()">Azure Secrets</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork28()">Azure Blob Storage</button>
                                 </div>
                             </div>
                         </div>
@@ -177,26 +196,26 @@ Austin Martin -> amartin@amartinec.com -->
                             </div>
                             <div id="webd" class="panel-collapse collapse" role="tabpanel" aria-labelledby="webd">
                                 <div class="panel-body">
-                                    <button type="submit" class="btn btn-primary" onclick="dork29()">cs.html Open Redirect</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork30()">Kibana Dashboards</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork31()">XML Files Within The Admin Dir</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork32()">Lync Server Autodiscover</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork37()">Misconfigured Bamboo</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork40()">Jira Dashboards</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork41()">Exposed Radius Server Keys</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork42()">Wordpress Installation</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork44()">URLstatusgo Open Redirect</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork45()">Wordpress Apps With Registration</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork46()">Open Sidekiq (Ruby) Dashboards</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork47()">Unauthenticated File Uploads (FCKeditor)</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork52()">Tiny_mce RCE</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork53()">Unauthenticated File Uploads (Filechucker)</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork57()">go.cgi Open Redirect</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork62()">Unauthenticated File Uploads (Liferay)</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork63()">Generic Unauthenticated File Uploads</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork82()">Generic Unauthenticated File Uploads 2</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork43()">PHPmyadmin</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork85()">Public SQL Dumps</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork29()">cs.html Open Redirect</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork30()">Kibana Dashboards</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork31()">XML Files Within The Admin Dir</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork32()">Lync Server Autodiscover</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork37()">Misconfigured Bamboo</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork40()">Jira Dashboards</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork41()">Exposed Radius Server Keys</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork42()">Wordpress Installation</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork44()">URLstatusgo Open Redirect</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork45()">Wordpress Apps With Registration</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork46()">Open Sidekiq (Ruby) Dashboards</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork47()">Unauthenticated File Uploads (FCKeditor)</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork52()">Tiny_mce RCE</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork53()">Unauthenticated File Uploads (Filechucker)</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork57()">go.cgi Open Redirect</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork62()">Unauthenticated File Uploads (Liferay)</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork63()">Generic Unauthenticated File Uploads</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork82()">Generic Unauthenticated File Uploads 2</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork43()">PHPmyadmin</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork85()">Public SQL Dumps</button>
                                 </div>
                             </div>
                         </div>
@@ -211,46 +230,46 @@ Austin Martin -> amartin@amartinec.com -->
                             </div>
                             <div id="shelld" class="panel-collapse collapse" role="tabpanel" aria-labelledby="shelld">
                                 <div class="panel-body">
-                                    <button type="submit" class="btn btn-primary" onclick="dork33()">Mini Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork34()">C99 Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork35()">C100 Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork36()">SSI Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork39()">1945 Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork48()">M3R1C4 Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork49()">Generic WordPress Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork50()">PHPSpy Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork51()">Mister Spy Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork54()">JSPSpy Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork55()">ISR-Stealer Botnet Login Panels</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork56()">Generic Botnet Login Panels</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork58()">Generic WordPress Web Shell 2</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork59()">Generic ASP Web Shell 2</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork60()">Generic Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork61()">File Manager Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork64()">Nstview Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork65()">Hamdida X Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork66()">3xp1r3 Cyber Army Auto cPanel Cracker</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork67()">Private Uploader Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork68()">Angel Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork69()">ASPXSpy Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork70()">b374k Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork71()">WSO Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork72()">Crime24-Stealer Logs</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork73()">BLaSTER Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork74()">SN0X Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork75()">Pouya/3fexe/Smart Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork76()">WSO Web Shell 2</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork77()">1n73ct10n Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork78()">Ghost-DZ Uploader Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork79()">133w0rm cPanel Cracker</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork80()">r00t Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork81()">Priv8 Defacer</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork83()">HAXPLORER Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork87()">PHPKonsole Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork89()">R57 Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork90()">Cyber Anarchy Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork91()">Locus7 Web Shell</button>
-                                    <button type="submit" class="btn btn-primary" onclick="dork92()">Generic PHP Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork33()">Mini Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork34()">C99 Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork35()">C100 Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork36()">SSI Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork39()">1945 Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork48()">M3R1C4 Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork49()">Generic WordPress Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork50()">PHPSpy Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork51()">Mister Spy Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork54()">JSPSpy Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork55()">ISR-Stealer Botnet Login Panels</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork56()">Generic Botnet Login Panels</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork58()">Generic WordPress Web Shell 2</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork59()">Generic ASP Web Shell 2</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork60()">Generic Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork61()">File Manager Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork64()">Nstview Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork65()">Hamdida X Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork66()">3xp1r3 Cyber Army Auto cPanel Cracker</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork67()">Private Uploader Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork68()">Angel Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork69()">ASPXSpy Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork70()">b374k Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork71()">WSO Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork72()">Crime24-Stealer Logs</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork73()">BLaSTER Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork74()">SN0X Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork75()">Pouya/3fexe/Smart Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork76()">WSO Web Shell 2</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork77()">1n73ct10n Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork78()">Ghost-DZ Uploader Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork79()">133w0rm cPanel Cracker</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork80()">r00t Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork81()">Priv8 Defacer</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork83()">HAXPLORER Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork87()">PHPKonsole Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork89()">R57 Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork90()">Cyber Anarchy Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork91()">Locus7 Web Shell</button>
+                                    <button type="button" class="btn btn-primary" onclick="dork92()">Generic PHP Web Shell</button>
 
                                 </div>
                             </div>
@@ -262,8 +281,6 @@ Austin Martin -> amartin@amartinec.com -->
     </div>
 
     <script type="text/javascript">
-
-
         //welcome modal+instructions logic
         function setCookie(cname, cvalue, exdays) {
             var d = new Date();
@@ -288,6 +305,11 @@ Austin Martin -> amartin@amartinec.com -->
             $("#welcomemodal").modal('show');
         }
 
+        //modal to warn user they are hitting the site directly
+        function showWarningModal() {
+            $("#nondorkwarning").modal('show')
+        }
+
         (function () {
             var cookie = getCookie('shown');
             if (!cookie) {
@@ -305,10 +327,10 @@ Austin Martin -> amartin@amartinec.com -->
                 $("#closemodal").prop( "disabled", true );
             }
         }
+        //End modal decision logic--------------------------------------------------------------------------------------
 
-        //End modal decision logic
 
-
+        //Start save value logic----------------------------------------------------------------------------------------
 
         //Saves the target domain/url in local storage so it does not need to be retyped
         //Does not send any info to the server
@@ -324,9 +346,9 @@ Austin Martin -> amartin@amartinec.com -->
             }
             return localStorage.getItem(v);
         }
-        //End Save value logic
+        //End Save value logic-----------------------------------------------------------------------------------------
 
-        //Verify that at least domain was entered for specific dorks
+        //Domain validation logic--------------------------------------------------------------------------------------
         function validate(input) {
             var val = input;
             val = val.replace(/(^\w+:|^)\/\//, '');;
@@ -338,10 +360,48 @@ Austin Martin -> amartin@amartinec.com -->
             }
         }
 
+        function returndomain(url)
+        {
+            //hacky way to do this
+            //if it works, it works
+
+            //add https:// if not contain to make URL lib happy
+            if ((!url.includes('https://')) || (!url.includes('https://')))
+            {
+                url='https://' + url;
+            }
+            domain = (new URL(url)).hostname.replace('www.','').replace();
+            setDomainoption(domain);
+            return(domain);
+        }
+
+        function setDomainoption(domain){
+            if(domain) {
+                var element = document.getElementById("listdomaininmodal");
+                element.innerHTML = domain;
+            }
+            else{
+                alert("This dork requires at least a domain name to run. Please retry the query.")
+            }
+
+        }
+        //End domain validation logic----------------------------------------------------------------------------------
+
+
+        //Start Queries--------------------------------------------------------------------------------------------------
+        function dork14(query)
+        {
+            if(validate(query))
+            {
+                window.open('https://login.microsoftonline.com/getuserrealm.srf?login=username@'+returndomain(query)+'&xml=1', '_blank');
+            }
+        }
+
         function dork1(query)
         {
             if(validate(query))
             {
+
                 window.open('https://www.google.com/search?q=site:'+query+' inurl:login | inurl:signin | intitle:Login | intitle:sign in | inurl:auth', '_blank');
             }
         }
@@ -438,14 +498,6 @@ Austin Martin -> amartin@amartinec.com -->
             if(validate(query))
             {
                 window.open('https://www.google.com/search?q=site:*.'+query, '_blank');
-            }
-        }
-
-        function dork14(query)
-        {
-            if(validate(query))
-            {
-                window.open('https://login.microsoftonline.com/getuserrealm.srf?login=username@'+query+'&xml=1', '_blank');
             }
         }
 
@@ -712,9 +764,10 @@ Austin Martin -> amartin@amartinec.com -->
 
         function dork92()
         {window.open('https://www.google.com/search?q=intitle:"index of" "shell.php" -inurl:izulthea -inurl:cybersecuritywebtest -inurl:google-dorking -inurl:urlscan -inurl:alamy  -inurl:github -inurl:exploit-db -inurl:packetstormsecurity -inurl:uedbox', '_blank');}
+        //END Queries--------------------------------------------------------------------------------------------------
 
 
-        //SCRIPT FOR DAYBREAK EFFECT
+        //SCRIPT FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
         $(function() {
             var rnd = function(min, max) {
                 return Math.random() * (max - min) + min;
@@ -746,7 +799,7 @@ Austin Martin -> amartin@amartinec.com -->
             }, rnd(1750,1751));
 
         });
-
+        //End FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
     </script>
 </body>
 </html>

@@ -210,3 +210,11 @@ a {
 #welcomemodal{
     color: black;
 }
+
+#warningmodalbody{
+    color: black;
+}
+
+.modal-header{
+    color: black;
+}
