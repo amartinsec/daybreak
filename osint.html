@@ -74,7 +74,7 @@ Austin Martin -> amartin@amartinec.com -->
                 <div class="hack-slider">
                     <div class="hack-slides">
                         <div class="slide">
-                            <img src="daybreak_sun.png" id="image">
+                            <a href="index.html"><img src="daybreak_sun.png" id="image"></a>
                         </div>
                     <div class="shapes2"></div> <!-- Change class to shapes to add the flicker effect to the logo -->
                     <!-- <img src="daybreak_sun.png" id="image" width="60" height="60"> -->
@@ -88,7 +88,7 @@ Austin Martin -> amartin@amartinec.com -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">OSINT Tool</a></li>
+                            <li><a href="osint.html">OSINT Tool</a></li>
                             <li><a href="#">Blog</a></li>
                         </ul>
                     </li>
@@ -102,8 +102,9 @@ Austin Martin -> amartin@amartinec.com -->
     <div class="d-flex">
         <!-- The sidebar -->
         <div class="sidebar">
-            <a class="dork" href="">Google Dorks</a>
-            <a class="tansom" href="">Ransomware</a>
+            <a style="border-bottom: 1px solid rgba(255, 255, 255, .7)" class="dork" href="osint.html">Google Dorks</a>
+            <a class="paste" href="paste.html">Paste Scraper</a>
+            <a class="ransom" href="">Ransomware</a>
             <a class="dns" href="">DNS</a>
             <a class="dws" href="">Dark Web Search Engines</a>
             <a class="outages" href="">Outages</a>
@@ -482,7 +483,7 @@ Austin Martin -> amartin@amartinec.com -->
         {
             if(validate(query))
             {
-                window.open('https://www.google.com/search?q= site:pastebin.com | site:paste2.org | site:pastehtml.com  | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:paste.debian.net | site:paste.org | site:paste.org.ru ' + query, '_blank');
+                window.open('https://www.google.com/search?q=site:pastebin.com | site:paste2.org | site:pastehtml.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:trello.com ' + query, '_blank');
             }
         }
         function dork8(query)
@@ -593,7 +594,7 @@ Austin Martin -> amartin@amartinec.com -->
         {window.open('https://www.google.com/search?q=intitle:index of "aws/credentials"', '_blank');}
 
         function dork21()
-        {window.open('https://www.google.com/search?q=site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org  | site:codeshare.io | site:trello.com "AWS_ACCESS_KEY"', '_blank');}
+        {window.open('https://www.google.com/search?q=site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:trello.com "AWS_ACCESS_KEY"', '_blank');}
 
         function dork22()
         {window.open('https://www.google.com/search?q=intitle:"index of" "aws-config.php" | "awsconfig.json" ', '_blank');}
