@@ -16,6 +16,8 @@ body{
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 
+
+
 }
 
 .dropdown:hover>.dropdown-menu {
@@ -38,6 +40,7 @@ body{
     display: none;
     text-shadow: 0px 0px 5px rgba(255, 255, 255, .4);
     text-align: center;
+
 }
 
 .hack-slider .shapes .shape {
@@ -90,7 +93,31 @@ a {
     text-decoration: none;
 }
 
+@keyframes blurrrrr {
+    0%    { filter: blur(30px); }
+    20%   { filter: blur(24px); }
+    40%   { filter: blur(18x); }
+    60%   { filter: blur(12px); }
+    80%   { filter: blur(6px); }
+    100%  { filter: blur(0px); }
+}
+
+
 #image{
     width: 14%;
     opacity: .875;
+    filter: blur(30px);
+    animation: blurrrrr 1s;
+    filter: blur(0px);
 }
+
+
+
+
+
+
+
+
+
+
+

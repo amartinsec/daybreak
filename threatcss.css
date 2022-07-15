@@ -236,7 +236,7 @@ a {
     content: "\e079";
 }
 
-#pastelink{
+#threatlink{
     position: relative;
 }
 
@@ -249,7 +249,7 @@ a {
     100%  { width: 100%; }
 }
 
-#pastelink::before {
+#threatlink::before {
     content: '';
     display: block;
     position: absolute;

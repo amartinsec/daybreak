@@ -236,7 +236,7 @@ a {
     content: "\e079";
 }
 
-#pastelink{
+#dnslink{
     position: relative;
 }
 
@@ -249,7 +249,7 @@ a {
     100%  { width: 100%; }
 }
 
-#pastelink::before {
+#dnslink::before {
     content: '';
     display: block;
     position: absolute;

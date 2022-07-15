@@ -19,7 +19,7 @@ Austin Martin -> amartin@amartinec.com -->
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="pastecss.css">
+    <link rel="stylesheet" href="threatcss.css">
 
 </head>
 <body>
@@ -66,14 +66,14 @@ Austin Martin -> amartin@amartinec.com -->
     <!-- The sidebar -->
     <div class="sidebar">
         <a class="dork" href="osint.html">Google Dorks</a>
-        <a id="pastelink" class="paste" href="paste.html">Paste Scraper</a>
-        <a class="ransom" href="ransom.html">Ransomware</a>
+        <a  class="paste" href="paste.html">Paste Scraper</a>
+        <a class="ransom" id="ransomlink" href="ransom.html">Ransomware</a>
         <a class="dns" href="dns.html">DNS</a>
-        <a class="dws" href="dw.html">Dark Web Search Engines</a>
-        <a class="outages" href="outages.html">Outages</a>
-        <a class="signt" href="signt.html">SIGNT Survey</a>
-        <a class="crypto" href="crypto.html">Cryptocurrency</a>
-        <a class="threats" href="threat.html">Threat Lists</a>
+        <a class="dws" id="dwlink" href="dw.html">Dark Web Search Engines</a>
+        <a class="outages" id="outageslink" href="outages.html">Outages</a>
+        <a class="signt" id="signtlink" href="signt.html">SIGNT Survey</a>
+        <a class="crypto" id="cryptolink" href="crypto.html">Cryptocurrency</a>
+        <a class="threats" id="threatlink" href="threat.html">Threat Lists</a>
         <a class="ls" href="ls.html">Logistics and Shipping</a>
         <a class="seaair" href="sa.html">Sea and Air</a>
         <a class=publicmon" href="pem.html">Public Event Monitoring</a>
@@ -104,7 +104,7 @@ Austin Martin -> amartin@amartinec.com -->
 </div>
 
 <script type="text/javascript">
-       //SCRIPT FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
+    //SCRIPT FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
     $(function() {
         var rnd = function(min, max) {
             return Math.random() * (max - min) + min;

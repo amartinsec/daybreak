@@ -236,7 +236,7 @@ a {
     content: "\e079";
 }
 
-#pastelink{
+#cryptolink{
     position: relative;
 }
 
@@ -249,7 +249,7 @@ a {
     100%  { width: 100%; }
 }
 
-#pastelink::before {
+#cryptolink::before {
     content: '';
     display: block;
     position: absolute;

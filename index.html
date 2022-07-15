@@ -24,6 +24,7 @@ Austin Martin -> amartin@amartinec.com -->
     </head>
     <body>
 
+
     <!-- START NAV BAR ------------------->
     <nav class="navbar ">
         <div class="container-fluid">
@@ -45,6 +46,7 @@ Austin Martin -> amartin@amartinec.com -->
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
+
     </nav>
 
     <!---------END NAV BAR ---------------------->
@@ -52,49 +54,81 @@ Austin Martin -> amartin@amartinec.com -->
         <div class="hack-slider">
             <div class="hack-slides">
                 <div class="slide">
-                    <img src="daybreak_sun.png" id="image">
+                    <img src="daybreaktransparent.png" id="image">
                     <p style="padding-top: 10px">Daybreak Cyber</p>
                 </div>
-
             </div>
-            <div class="shapes"></div>
+
+        </div>
 
 
             <script>
-                $(function() {
-                    var rnd = function(min, max) {
-                        return Math.random() * (max - min) + min;
-                    };
-
-                    $(".hack-slider").height($(".slide:nth-child(1)", this).height());
-                    $(".slide:first-child", ".hack-slider").addClass('hack first');
-                    $(".slide:last-child", ".hack-slider").addClass('last')
-
-                    function slideEffect() {
-                        var timer = setInterval(function() {
-                            var rdH = parseInt(rnd(40, $(".hack").height())),
-                                rdW = parseInt(rnd(500, $(".hack").width() * 2)),
-                                rdT = parseInt(rnd(0, $(".hack").height() / 2)),
-                                rdL = parseInt(rnd(-500, $(".hack").width() / 2) + 200);
-                            $(".hack-slider .shapes").append('<span class="shape ' + rdH + ' ' + rdW + '" style="top:' + rdT + 'px; left:' + rdL + 'px; width:' + rdW + 'px;height:' + rdH + 'px;"></span>')
-                            $("." + rdH + "." + rdW).each(function() {
-                                $(this).delay(50).slideUp(0, function() {
-                                    $(this).remove();
-                                });
-                            });
-                        }, 100);
-                        setTimeout(function() {
-                            clearInterval(timer)
-                        }, rnd(650,950));
+                function rand(min, max) {
+                        return Math.floor(Math.random() * (max - min + 1)) + min;
                     }
-                    window.setInterval(function() {
-                        slideEffect();
-                    }, rnd(1750,3000));
+                    function getRandomLetter() {
+                        var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+                        return alphabet[rand(0,alphabet.length - 1)]
+                    }
+                    function getRandomWord(word) {
+                        var text = word.innerHTML
 
-                });
+                        var finalWord = ''
+                        for(var i=0;i<text.length;i++) {
+                            finalWord += text[i] == ' ' ? ' ' : getRandomLetter()
+                        }
+
+                        return finalWord
+                    }
+
+                    var word = document.querySelector('p')
+                    var interv = 'undefined'
+                    var canChange = false
+                    var globalCount = 0
+                    var count = 0
+                    var INITIAL_WORD = word.innerHTML;
+                    var isGoing = false
+
+                    function init() {
+                        if(isGoing) return;
+
+                        isGoing = true
+                        var randomWord = getRandomWord(word)
+                        word.innerHTML = randomWord
+
+                        interv = setInterval(function() {
+                            var finalWord = ''
+                            for(var x=0;x<INITIAL_WORD.length;x++) {
+                                if(x <= count && canChange) {
+                                    finalWord += INITIAL_WORD[x]
+                                } else {
+                                    finalWord += getRandomLetter()
+                                }
+                            }
+                            word.innerHTML = finalWord
+                            if(canChange) {
+                                count++
+                            }
+                            if(globalCount >= 4) {
+                                canChange = true
+                            }
+                            if(count>=INITIAL_WORD.length) {
+                                clearInterval(interv)
+                                count = 0
+                                canChange = false
+                                globalCount = 0
+                                isGoing = false
+                            }
+                            globalCount++
+                        },50)
+
+                    }
+                    init()
+
+
 
             </script>
-        </div>
+
 
 
     </body>
