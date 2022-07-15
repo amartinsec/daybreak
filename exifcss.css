@@ -8,6 +8,12 @@
     position: fixed;
     height: 100%;
     overflow: auto;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 /* Sidebar links */
@@ -69,7 +75,25 @@ div.content {
 
 
 /*BOILERPLATE CSS BELOW */
-body{
+
+.hack-slider {
+    width: 70%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    height: 0px !important;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
     user-drag: none;
     -webkit-user-drag: none;
     user-select: none;
@@ -78,28 +102,26 @@ body{
     -ms-user-select: none;
 }
 
-.hack-slider {
-    width: 70%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    height: 0px !important;
-
-
-}
-
-.dropdown:hover>.dropdown-menu {
-    display: block;
-}
-
 .btn{
     margin-bottom: 10px !important;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .nav.navbar-right li a{
     color: rgba(255, 255, 255, .7);
     font-family: "Consolas";
     font-size: 18px;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .hack-slider .slide {
@@ -152,6 +174,12 @@ a {
 
 .dropdown-menu{
     background-color: black;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 
@@ -169,6 +197,12 @@ a {
 #image{
     width: 60px;
     opacity: .875;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 #dorkform{
@@ -209,11 +243,14 @@ a {
 
 #welcomemodal{
     color: black;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
-#warningmodalbody{
-    color: black;
-}
 
 .modal-header{
     color: black;
@@ -236,7 +273,7 @@ a {
     content: "\e079";
 }
 
-#cryptolink{
+#exiflink{
     position: relative;
 }
 
@@ -249,7 +286,7 @@ a {
     100%  { width: 100%; }
 }
 
-#cryptolink::before {
+#exiflink::before {
     content: '';
     display: block;
     position: absolute;
@@ -262,6 +299,21 @@ a {
 
 }
 
+@keyframes easyload {
+    0%    { opacity: 0%; }
+    20%   { opacity: 20%; }
+    40%   { opacity: 40%; }
+    60%   { opacity: 60%; }
+    80%   { opacity: 80%; }
+    100%  { opacity: 100%; }
+}
+
+#dorkform {
+    opacity: 0%;
+    animation: easyload .2s;
+    opacity: 100%;
+
+}
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
@@ -282,17 +334,26 @@ a {
     background: #555;
 }
 
-@keyframes easyload {
-    0%    { opacity: 0%; }
-    20%   { opacity: 20%; }
-    40%   { opacity: 40%; }
-    60%   { opacity: 60%; }
-    80%   { opacity: 80%; }
-    100%  { opacity: 100%; }
+input[type="file"] {
+    display: none;
 }
 
-#dorkform {
-    opacity: 0%;
-    animation: easyload .2s;
-    opacity: 100%;
+.form-label  {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+
+    font-family: "Consolas";
 }
+
+#exifwelcomebody{
+    color: black;
+}
+
+#results {
+    white-space: pre;
+    padding-bottom: 5px;
+
+}
+

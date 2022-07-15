@@ -12,18 +12,35 @@ Austin Martin -> amartin@amartinec.com -->
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <title>Daybreak Cyber | Cybersecurity Services</title>
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="vendors/exif-js/exif.js"></script>
 
-    <link rel="stylesheet" href="lscss.css">
+    <link rel="stylesheet" href="exifcss.css">
 
 </head>
 <body>
 
+<!--Exif Welcome Modal -->
+<div id="exifwelcome" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <b class="modal-title">Exif Viewer</b>
+            </div>
+            <div class="modal-body" id="exifwelcomebody" style="overflow: hidden">
+                <p>
+                    <span>This tool will display the EXIF and IPTC data from an image.</span>
+                    <span>The EXIF standard only applies to .jpg and .tff file only.</span>
+                    <br><br>
+                    <span>All processing is done within your browser and no files are sent server-side.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Exif Welcome Modal-->
 
 
 
@@ -31,16 +48,12 @@ Austin Martin -> amartin@amartinec.com -->
 <nav class="navbar ">
     <div class="container-fluid">
         <div class="navbar-header">
-            <!-- EDIT THIS TO FIX ONCE DEPLOYED -->
-            <!-- <a class="navbar-brand" href="javascript:history.back()"> -->
-
             <div class="hack-slider">
                 <div class="hack-slides">
                     <div class="slide">
                         <a href="index.html"><img src="daybreak_sun.png" id="image"></a>
                     </div>
-                    <div class="shapes2"></div> <!-- Change class to shapes to add the flicker effect to the logo -->
-                    <!-- <img src="daybreak_sun.png" id="image" width="60" height="60"> -->
+                    <div class="shapes2"></div>
                 </div>
             </div>
         </div>
@@ -66,7 +79,7 @@ Austin Martin -> amartin@amartinec.com -->
     <!-- The sidebar -->
     <div class="sidebar">
         <a class="dork" href="osint.html">Google Dorks</a>
-<a class="exif" href="exif.html">Exif Viewer</a>
+        <a class="exif" id="exiflink" href="exif.html">Exif Viewer</a>
         <a  class="paste" href="paste.html">Paste Tools</a>
         <a class="ransom" id="ransomlink" href="ransom.html">Ransomware</a>
         <a class="dns" href="dns.html">DNS</a>
@@ -74,8 +87,8 @@ Austin Martin -> amartin@amartinec.com -->
         <a class="outages" id="outageslink" href="outages.html">Outages</a>
         <a class="signt" id="signtlink" href="signt.html">SIGNT Survey</a>
         <a class="crypto" id="cryptolink" href="crypto.html">Cryptocurrency</a>
-        <a class="threats" id="threatlink" href="threat.html">Threat Lists</a>
-        <a class="ls" href="ls.html" id="lslink">Logistics and Shipping</a>
+        <a class="threats" href="threat.html">Threat Lists</a>
+        <a class="ls" href="">Logistics and Shipping</a>
         <a class="seaair" href="sa.html">Sea and Air</a>
         <a class=publicmon" href="pem.html">Public Event Monitoring</a>
     </div>
@@ -83,15 +96,15 @@ Austin Martin -> amartin@amartinec.com -->
     <!-- Page content -->
     <div id="dorking" class="d-flex flex-column">
         <form id="dorkform">
+            <h3>Exif Viewer</h3>
+            <br>
             <div class="form-group">
-                <label for="txtbox" class="form-label">Target Domain/URL</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
-                    <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Perform Google Dorking</button>
-                            </span>
-                </div>
-                <div id="emailHelp" class="form-text"></div>
+                <label class="form-label" for="file-input">
+                    <i class="fa fa-cloud-upload"></i>
+                    <span class="glyphicon glyphicon-upload"></span> Upload
+
+                </label>
+                <input type="file" id="file-input" class="form-control">
             </div>
 
             <!--MODAL WARNING FOR NON DORK -->
@@ -100,6 +113,8 @@ Austin Martin -> amartin@amartinec.com -->
 
             <!-- START OF QUERIES ----------------------------------------------------------------------->
             <br>
+            <!-- DIV that populates with the EXIF results -->
+            <p id="results"></p>
         </form>
     </div>
 </div>
@@ -138,6 +153,32 @@ Austin Martin -> amartin@amartinec.com -->
 
     });
     //End FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
+
+
+    //Used JS library Exix.js --> https://github.com/exif-js/exif-js
+    window.onload=getExif();
+
+    function getExif() {
+        document.getElementById("file-input").onchange = function (e) {
+            var file = e.target.files[0]
+            if (file && file.name) {
+                EXIF.getData(file, function () {
+                    var exifData = EXIF.pretty(this);
+                    if (exifData) {
+                        document.getElementById("results").textContent=exifData;
+                    } else {
+                        document.getElementById("results").textContent=("No EXIF data found in image '" + file.name);
+                    }
+                });
+            }
+        }
+    }
+
+    $(document).ready(function(){
+        $("#exifwelcome").modal('show');
+    });
+
+
 </script>
 </body>
 </html>
