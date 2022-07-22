@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <!-- Daybreak Cyber LLC
-Austin Martin -> amartin@amartinec.com -->
+Austin Martin -> amartin@amartinec.com --> h
 <head>
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -124,7 +124,7 @@ Austin Martin -> amartin@amartinec.com -->
                 <div class="input-group">
                     <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
                     <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Perform Google Dorking</button>
+                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Google Dork</button>
                             </span>
                 </div>
                 <div id="emailHelp" class="form-text"></div>
@@ -184,6 +184,8 @@ Austin Martin -> amartin@amartinec.com -->
                                 <button type="button" class="btn btn-primary" onclick="dork17(txtbox.value)">Robots.txt</button>
                                 <button type="button" class="btn btn-primary" onclick="dork29(txtbox.value)">Security.txt</button>
                                 <button type="button" class="btn btn-primary" onclick="dork84(txtbox.value)">Admin Logins</button>
+                                <button type="button" class="btn btn-primary" onclick="dork115(txtbox.value)">Cached Website</button>
+                                <button type="button" class="btn btn-primary" onclick="dork114(txtbox.value)">Company Linkedin Search (Enter Company Name)</button>
                             </div>
                         </div>
                     </div>
@@ -209,6 +211,10 @@ Austin Martin -> amartin@amartinec.com -->
                                 <button type="button" class="btn btn-primary" onclick="dork26()">Cloud SQL Files</button>
                                 <button type="button" class="btn btn-primary" onclick="dork27()">Azure Secrets</button>
                                 <button type="button" class="btn btn-primary" onclick="dork28()">Azure Blob Storage</button>
+                                <button type="button" class="btn btn-primary" onclick="dork94()">Exposed AWS S3 Explorer</button>
+                                <button type="button" class="btn btn-primary" onclick="dork95()">cloud-config.yml</button>
+                                <button type="button" class="btn btn-primary" onclick="dork112()">AWS Log Files</button>
+
                             </div>
                         </div>
                     </div>
@@ -217,7 +223,7 @@ Austin Martin -> amartin@amartinec.com -->
                         <div class="panel-heading" role="tab" id="webtop">
                             <h5 class="panel-title">
                                 <a class="collapsed panelss" data-toggle="collapse" data-parent="#faq" href="#webd" aria-expanded="false" aria-controls="webd">
-                                    Web Vulnerabilities
+                                     Sensitive Data Exposure and Web Vulnerabilities
                                 </a>
                             </h5>
                         </div>
@@ -243,6 +249,22 @@ Austin Martin -> amartin@amartinec.com -->
                                 <button type="button" class="btn btn-primary" onclick="dork82()">Generic Unauthenticated File Uploads 2</button>
                                 <button type="button" class="btn btn-primary" onclick="dork43()">PHPmyadmin</button>
                                 <button type="button" class="btn btn-primary" onclick="dork85()">Public SQL Dumps</button>
+                                <button type="button" class="btn btn-primary" onclick="dork96()">Exposed Private .pem Keys</button>
+                                <button type="button" class="btn btn-primary" onclick="dork97()">Generic Passwords in .sql files</button>
+                                <button type="button" class="btn btn-primary" onclick="dork98()">Passwords in .sql files (insert into)</button>
+                                <button type="button" class="btn btn-primary" onclick="dork99()">DBconn Files</button>
+                                <button type="button" class="btn btn-primary" onclick="dork100()">MySQL Connection Files</button>
+                                <button type="button" class="btn btn-primary" onclick="dork101()">Password.log Files</button>
+                                <button type="button" class="btn btn-primary" onclick="dork102()">Exposed Nessus Reports</button>
+                                <button type="button" class="btn btn-primary" onclick="dork103()">DB Properties Files</button>
+                                <button type="button" class="btn btn-primary" onclick="dork104()">Outlook .pst Files</button>
+                                <button type="button" class="btn btn-primary" onclick="dork105()">Index of Passlist</button>
+                                <button type="button" class="btn btn-primary" onclick="dork106()">ASP.NET Front Page Service.pwd</button>
+                                <button type="button" class="btn btn-primary" onclick="dork107()">Exposed Vulnerability Scan Reports</button>
+                                <button type="button" class="btn btn-primary" onclick="dork108()">Index of /backup</button>
+                                <button type="button" class="btn btn-primary" onclick="dork109()">MySQL Dump + phpMyAdmin</button>
+                                <button type="button" class="btn btn-primary" onclick="dork110()">Unauthenticated phpMyAdmin Main.php</button>
+                                <button type="button" class="btn btn-primary" onclick="dork111()">Indexed .onion Sites (TOR)</button>
                             </div>
                         </div>
                     </div>
@@ -581,6 +603,20 @@ Austin Martin -> amartin@amartinec.com -->
         }
     }
 
+    function dork115(query)
+    {
+        if(validate(query))
+        {
+            window.open('https://www.google.com/search?q=cache:'+query, '_blank');
+        }
+    }
+
+    function dork114(query)
+    {
+        window.open('https://www.google.com/search?q=site:linkedin.com/in intitle:"' + query + '"', '_blank');
+    }
+
+
 
     //Start Cloud Dorks
     function dork18()
@@ -615,6 +651,18 @@ Austin Martin -> amartin@amartinec.com -->
 
     function dork28()
     {window.open('https://www.google.com/search?q=site:blob.core.windows.net', '_blank');}
+
+    function dork94()
+    {window.open('https://www.google.com/search?q=inurl:s3.amazonaws.com intitle:"AWS S3 Explorer"', '_blank');}
+
+    function dork95()
+    {window.open('https://www.google.com/search?q=intitle:"index of "cloud-config.yml"', '_blank');}
+
+    function dork112()
+    {window.open('https://www.google.com/search?q=s3 site:amazonaws.com filetype:log"', '_blank');}
+
+    function dork113()
+    {window.open('https://www.google.com/search?q=site:http://s3.amazonaws.com intitle:index.of.bucket', '_blank');}
 
 
     //Start Web Vulns
@@ -674,6 +722,55 @@ Austin Martin -> amartin@amartinec.com -->
 
     function dork85()
     {window.open('https://www.google.com/search?q=intext:"Dumping data for table"', '_blank');}
+
+    function dork96()
+    {window.open('https://www.google.com/search?q=intitle:"index of" ("private_key.pem" | "privkey.pem" | "privatekey.pem" | "secret.pem" | "secretkey.pem") -inurl:exploit-db', '_blank');}
+
+    function dork97()
+    {window.open('https://www.google.com/search?q=filetype:sql password -inurl:exploit-db', '_blank');}
+
+    function dork98()
+    {window.open('https://www.google.com/search?q=filetype:sql “insert into” (pass|passwd|password) -inurl:exploit-db', '_blank');}
+
+    function dork99()
+    {window.open('https://www.google.com/search?q=filetype:inc dbconn -inurl:exploit-db', '_blank');}
+
+    function dork100()
+    {window.open('https://www.google.com/search?q=filetype:inc intext:mysql_connect | mysql_pconnect -inurl:exploit-db', '_blank');}
+
+    function dork101()
+    {window.open('https://www.google.com/search?q=filetype:log inurl:"password.log" -inurl:exploit-db', '_blank');}
+
+    function dork102()
+    {window.open('https://www.google.com/search?q=filetype:pdf "Assessment Report" nessus -inurl:exploit-db', '_blank');}
+
+    function dork103()
+    {window.open('https://www.google.com/search?q=filetype:properties inurl:db intext:password -inurl:exploit-db', '_blank');}
+
+    function dork104()
+    {window.open('https://www.google.com/search?q=filetype:pst inurl:"outlook.pst" -inurl:exploit-db', '_blank');}
+
+    function dork105()
+    {window.open('https://www.google.com/search?q=index.of passlist -inurl:exploit-db', '_blank');}
+
+    function dork106()
+    {window.open('https://www.google.com/search?q=intext:" -FrontPage-" ext:pwd inurl:(service | authors | administrators | users) -inurl:exploit-db', '_blank');}
+
+    function dork107()
+    {window.open('https://www.google.com/search?q=intext:"Host Vulnerability Summary Report" -inurl:exploit-db', '_blank');}
+
+    function dork108()
+    {window.open('https://www.google.com/search?q=intext:"Index of /backup" -inurl:exploit-db', '_blank');}
+
+    function dork109()
+    {window.open('https://www.google.com/search?q=intext:"phpMyAdmin MySQL-Dump" filetype:txt -inurl:exploit-db', '_blank');}
+
+    function dork110()
+    {window.open('https://www.google.com/search?q=intext:"phpMyAdmin" "running on" inurl:"main.php" -inurl:exploit-db', '_blank');}
+
+    function dork111()
+    {window.open('https://www.google.com/search?q=site:*.onion.* -inurl:exploit-db', '_blank');}
+
 
 
     //Start Web Shells

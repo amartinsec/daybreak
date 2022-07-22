@@ -1011,7 +1011,8 @@
         }
         return tags;
     }
-    
+
+
     EXIF.getAllIptcTags = function(img) {
         if (!imageHasData(img)) return {};
         var a,
