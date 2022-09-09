@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<!-- Daybreak Cyber LLC
-Austin Martin -> amartin@amartinec.com -->
+<!-- Austin Martin amartin@amartinec.com -->
 <head>
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -11,7 +10,7 @@ Austin Martin -> amartin@amartinec.com -->
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <title>Daybreak Cyber | Cybersecurity Services</title>
+    <title>amartinsec</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -45,19 +44,13 @@ Austin Martin -> amartin@amartinec.com -->
             </div>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="osint.html">OSINT Tool</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+                           <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">About</a></li>
+                    <li><a href="osint.html">OSINT Tool</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
     </div><!-- /.container-fluid -->
 </nav>
 
@@ -66,78 +59,106 @@ Austin Martin -> amartin@amartinec.com -->
     <!-- The sidebar -->
     <div class="sidebar">
         <a class="dork" href="osint.html">Google Dorks</a>
+        <a class="signt" href="signt.html">Reverse Phone/Address</a>
 <a class="exif" href="exif.html">Exif Viewer</a>
         <a  class="paste" href="paste.html">Paste Tools</a>
         <a class="ransom" id="ransomlink" href="ransom.html">Ransomware</a>
         <a class="dns" id="dnslink" href="dns.html">DNS</a>
         <a class="dws" href="dw.html">Dark Web Search Engines</a>
         <a class="outages" href="outages.html">Outages</a>
-        <a class="signt" href="signt.html">SIGNT Survey</a>
+
         <a class="crypto" href="crypto.html">Cryptocurrency</a>
         <a class="threats" href="threat.html">Threat Lists</a>
-        <a class="ls" href="ls.html">Logistics and Shipping</a>
-        <a class="seaair" href="sa.html">Sea and Air</a>
-        <a class=publicmon" href="">Public Event Monitoring</a>
+
     </div>
 
     <!-- Page content -->
     <div id="dorking" class="d-flex flex-column">
         <form id="dorkform">
+            <h3>DNS Tools</h3>
+            <br>
             <div class="form-group">
-                <label for="txtbox" class="form-label">Target Domain/URL</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
-                    <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Perform Google Dorking</button>
-                            </span>
+                <label for="txtbox" class="form-label">Target Domain</label>
+                <div class="input-group" style="display: flex">
+                    <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" style="border-radius: 4px"  >
                 </div>
-                <div id="emailHelp" class="form-text"></div>
             </div>
-
-            <!--MODAL WARNING FOR NON DORK -->
-
-            <!--END MODAL WARNING FOR NON DORK -->
-
-            <!-- START OF QUERIES ----------------------------------------------------------------------->
+            <div class="container-fluid" id="dorkcontainer">
+                            <div class="panel-body">
+                                <button type="button" class="btn btn-primary" onclick="dns1()">DNS Dumpster</button>
+                                <button type="button" class="btn btn-primary" onclick="dns2(txtbox.value)">Cert.sh</button>
+                                <button type="button" class="btn btn-primary" onclick="dns3(txtbox.value)">DNSApe</button>
+                                <button type="button" class="btn btn-primary" onclick="dns4(txtbox.value)">DNSViz - DNS Visualization</button>
+                            </div>
+                        </div>
             <br>
         </form>
     </div>
 </div>
 
 <script type="text/javascript">
-    //SCRIPT FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
-    $(function() {
-        var rnd = function(min, max) {
-            return Math.random() * (max - min) + min;
-        };
 
-        $(".hack-slider").height($(".slide:nth-child(1)", this).height());
-        $(".slide:first-child", ".hack-slider").addClass('hack first');
-        $(".slide:last-child", ".hack-slider").addClass('last')
+    function dns1()
+    {
+        window.open('https://dnsdumpster.com/', '_blank');
+    }
 
-        function slideEffect() {
-            var timer = setInterval(function() {
-                var rdH = parseInt(rnd(40, $(".hack").height())),
-                    rdW = parseInt(rnd(800, $(".hack").width() * 2)),
-                    rdT = parseInt(rnd(0, $(".hack").height() / 2)),
-                    rdL = parseInt(rnd(-500, $(".hack").width() / 2) + 200);
-                $(".hack-slider .shapes").append('<span class="shape ' + rdH + ' ' + rdW + '" style="top:' + rdT + 'px; left:' + rdL + 'px; width:' + rdW + 'px;height:' + rdH + 'px;"></span>')
-                $("." + rdH + "." + rdW).each(function() {
-                    $(this).delay(50).slideUp(0, function() {
-                        $(this).remove();
-                    });
-                });
-            }, 100);
-            setTimeout(function() {
-                clearInterval(timer)
-            }, rnd(650,650));
+    function dns2(query)
+    {
+        domain = returndomain(query);
+        window.open('https://crt.sh/?q='+domain, '_blank');
+    }
+
+    function dns3(query)
+    {
+        domain = returndomain(query);
+        window.open('https://dnsape.com/dns/'+domain, '_blank');
+    }
+
+    function dns4(query)
+    {
+        domain = returndomain(query);
+        window.open('https://dnsviz.net/d/'+domain, '_blank');
+    }
+
+    //Start save value logic----------------------------------------------------------------------------------------
+    //Saves the target domain/url in local storage so it does not need to be retyped
+    //Does not send any info to the server
+    document.getElementById("txtbox").value = getSavedValue("txtbox");
+    function saveValue(e){
+        var id = e.id;
+        var val = e.value;
+        localStorage.setItem(id, val);//
+    }
+    function getSavedValue  (v){
+        if (!localStorage.getItem(v)) {
+            return "";
         }
-        window.setInterval(function() {
-            slideEffect();
-        }, rnd(1750,1751));
+        return localStorage.getItem(v);
+    }
+    //End Save value logic-----------------------------------------------------------------------------------------
 
-    });
-    //End FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
+    //Domain validation logic--------------------------------------------------------------------------------------
+
+
+    function returndomain(url)
+    {
+        //hacky way to do this
+        //if it works, it works
+        //add https:// if not contain to make URL lib happy
+        if (url == null || url == "")
+        {
+            return "";
+        }
+        else
+            if ((!url.includes('https://')) || (!url.includes('https://')))
+            {
+                url='https://' + url;
+            }
+            domain = (new URL(url)).hostname.replace('www.','').replace();
+            return(domain);
+    }
+
 </script>
 </body>
 </html>

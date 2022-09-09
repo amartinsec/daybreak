@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
-<!-- Daybreak Cyber LLC
-Austin Martin -> amartin@amartinec.com -->
+<!-- Austin Martin amartin@amartinec.com -->
 <head>
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -11,7 +10,7 @@ Austin Martin -> amartin@amartinec.com -->
     <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <title>Daybreak Cyber | Cybersecurity Services</title>
+    <title>amartinsec</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -41,20 +40,14 @@ Austin Martin -> amartin@amartinec.com -->
             </div>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="osint.html">OSINT Tool</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
+                           <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">About</a></li>
+                    <li><a href="osint.html">OSINT Tool</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
     </div><!-- /.container-fluid -->
+    </div>
 </nav>
 
 <!---------END NAV BAR ---------------------->
@@ -62,18 +55,16 @@ Austin Martin -> amartin@amartinec.com -->
     <!-- The sidebar -->
     <div class="sidebar">
         <a class="dork" href="osint.html">Google Dorks</a>
+        <a class="signt" href="signt.html">Reverse Phone/Address</a>
         <a class="exif" href="exif.html">Exif Viewer</a>
         <a id="pastelink" class="paste" href="paste.html">Paste Tools</a>
         <a class="ransom" href="ransom.html">Ransomware</a>
         <a class="dns" href="dns.html">DNS</a>
         <a class="dws" href="dw.html">Dark Web Search Engines</a>
         <a class="outages" href="outages.html">Outages</a>
-        <a class="signt" href="signt.html">SIGNT Survey</a>
         <a class="crypto" href="crypto.html">Cryptocurrency</a>
         <a class="threats" href="threat.html">Threat Lists</a>
-        <a class="ls" href="ls.html">Logistics and Shipping</a>
-        <a class="seaair" href="sa.html">Sea and Air</a>
-        <a class=publicmon" href="pem.html">Public Event Monitoring</a>
+
     </div>
 
     <!-- Page content -->
@@ -82,59 +73,191 @@ Austin Martin -> amartin@amartinec.com -->
             <h3>Paste Tools</h3>
             <br>
             <div class="form-group">
-                <label for="txtbox" class="form-label">Target Domain/URL</label>
+                <label for="txtbox" class="form-label">Target Keyword</label>
                 <div class="input-group">
                     <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
                     <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Perform Google Dorking</button>
+                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="search(txtbox.value)">Search</button>
                             </span>
                 </div>
                 <div id="emailHelp" class="form-text"></div>
             </div>
 
-            <!--MODAL WARNING FOR NON DORK -->
 
-            <!--END MODAL WARNING FOR NON DORK -->
 
             <!-- START OF QUERIES ----------------------------------------------------------------------->
+            <div class="" id="dorkcontainer">
+                <p>Build your custom Google Dork:</p>
+                <div class="form-inline">
+                    <div class="col">
+
+                    <input class="form-check-input" type="checkbox" id="pastebin.com" value="pastebin.com" />
+                    <label class="form-check-label" for="pastebin.com">Pastebin.com</label>
+
+
+                    <input class="form-check-input" type="checkbox" id="paste.debian.net" value="paste.debian.net" />
+                    <label class="form-check-label" for="paste.debian.net">paste.debian.net</label>
+
+                    <input class="form-check-input" type="checkbox" id="heypasteit.com" value="heypasteit.com"/>
+                    <label class="form-check-label" for="heypasteit.com">heypasteit.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="pastebin.fr" value="pastebin.fr"/>
+                    <label class="form-check-label" for="pastebin.fr">pastebin.fr</label>
+
+                    <input class="form-check-input" type="checkbox" id="hastebin.com" value="hastebin.com"/>
+                    <label class="form-check-label" for="hastebin.com">hastebin.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="dpaste.org" value="dpaste.org"/>
+                    <label class="form-check-label" for="dpaste.org">dpaste.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="dpaste.com" value="dpaste.com"/>
+                    <label class="form-check-label" for="dpaste.com">dpaste.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="dumpz.org" value="dumpz.org"/>
+                    <label class="form-check-label" for="dumpz.org">dumpz.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="justpaste.it" value="justpaste.it"/>
+                    <label class="form-check-label" for="justpaste.it">justpaste.it</label>
+
+                    <input class="form-check-input" type="checkbox" id="paste.centos.org" value="paste.centos.org"/>
+                    <label class="form-check-label" for="paste.centos.org">paste.centos.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="paste.opensuse.org" value="paste.opensuse.org"/>
+                    <label class="form-check-label" for="paste.opensuse.org">paste.opensuse.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="paste.org.ru" value="paste.org.ru"/>
+                    <label class="form-check-label" for="paste.org.ru">paste.org.ru</label>
+
+                    <input class="form-check-input" type="checkbox" id="paste.org" value="paste.org"/>
+                    <label class="form-check-label" for="paste.org">paste.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="0bin.net" value="0bin.net"/>
+                    <label class="form-check-label" for="0bin.net">0bin.net</label>
+
+                    <input class="form-check-input" type="checkbox" id="apaste.info" value="apaste.info"/>
+                    <label class="form-check-label" for="apaste.info">apaste.info</label>
+
+                    <input class="form-check-input" type="checkbox" id="bitbin.it" value="bitbin.it"/>
+                    <label class="form-check-label" for="bitbin.it">bitbin.it</label>
+
+                    <input class="form-check-input" type="checkbox" id="cl1p.net" value="cl1p.net"/>
+                    <label class="form-check-label" for="cl1p.net">cl1p.net</label>
+
+                    <input class="form-check-input" type="checkbox" id="controlc.com" value="controlc.com"/>
+                    <label class="form-check-label" for="controlc.com">controlc.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="doxbin.org" value="doxbin.org"/>
+                    <label class="form-check-label" for="doxbin.org">doxbin.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="kpaste.net" value="kpaste.net"/>
+                    <label class="form-check-label" for="kpaste.net">kpaste.net</label>
+
+                    <input class="form-check-input" type="checkbox" id="friendpaste.com" value="friendpaste.com"/>
+                    <label class="form-check-label" for="friendpaste.com">friendpaste.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="hatebin.com" value="hatebin.com"/>
+                    <label class="form-check-label" for="hatebin.com">hatebin.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="pst.klgrth.io" value="pst.klgrth.io"/>
+                    <label class="form-check-label" for="pst.klgrth.io">pst.klgrth.io</label>
+
+                        <!-- removed notes.io due to low quality results
+                    <input class="form-check-input" type="checkbox" id="notes.io" value="notes.io"/>
+                    <label class="form-check-label" for="notes.io">notes.io</label>
+                        -->
+                    <input class="form-check-input" type="checkbox" id="paste.null-life.com" value="paste.null-life.com"/>
+                    <label class="form-check-label" for="paste.null-life.com">paste.null-life.com</label>
+
+                    <input class="form-check-input" type="checkbox" id="paste.ee" value="paste.ee"/>
+                    <label class="form-check-label" for="paste.ee">paste.ee</label>
+
+                    <input class="form-check-input" type="checkbox" id="paste2.org" value="paste2.org"/>
+                    <label class="form-check-label" for="paste2.org">paste2.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="pastebin.osuosl.org" value="pastebin.osuosl.org"/>
+                    <label class="form-check-label" for="pastebin.osuosl.org">pastebin.osuosl.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="pastebin.pt" value="pastebin.pt"/>
+                    <label class="form-check-label" for="pastebin.pt">pastebin.pt</label>
+
+                    <input class="form-check-input" type="checkbox" id="pastelink.net" value="pastelink.net"/>
+                    <label class="form-check-label" for="pastelink.net">pastelink.net</label>
+
+                    <input class="form-check-input" type="checkbox" id="pastie.org" value="pastie.org"/>
+                    <label class="form-check-label" for="pastie.org">pastie.org</label>
+
+                    <input class="form-check-input" type="checkbox" id="privatebin.net" value="privatebin.net"/>
+                    <label class="form-check-label" for="privatebin.net">privatebin.net</label>
+
+                    <input class="form-check-input" type="checkbox" id="vpaste.net" value="vpaste.net"/>
+                    <label class="form-check-label" for="vpaste.net">vpaste.net</label>
+
+
+                </div>
+
+            </div>
+
+                </div>
+            <button type="button" class="btn btn-primary" id="selectall">Select All</button>
         </form>
     </div>
 </div>
 
 <script type="text/javascript">
-       //SCRIPT FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
-    $(function() {
-        var rnd = function(min, max) {
-            return Math.random() * (max - min) + min;
-        };
 
-        $(".hack-slider").height($(".slide:nth-child(1)", this).height());
-        $(".slide:first-child", ".hack-slider").addClass('hack first');
-        $(".slide:last-child", ".hack-slider").addClass('last')
-
-        function slideEffect() {
-            var timer = setInterval(function() {
-                var rdH = parseInt(rnd(40, $(".hack").height())),
-                    rdW = parseInt(rnd(800, $(".hack").width() * 2)),
-                    rdT = parseInt(rnd(0, $(".hack").height() / 2)),
-                    rdL = parseInt(rnd(-500, $(".hack").width() / 2) + 200);
-                $(".hack-slider .shapes").append('<span class="shape ' + rdH + ' ' + rdW + '" style="top:' + rdT + 'px; left:' + rdL + 'px; width:' + rdW + 'px;height:' + rdH + 'px;"></span>')
-                $("." + rdH + "." + rdW).each(function() {
-                    $(this).delay(50).slideUp(0, function() {
-                        $(this).remove();
-                    });
-                });
-            }, 100);
-            setTimeout(function() {
-                clearInterval(timer)
-            }, rnd(650,650));
-        }
-        window.setInterval(function() {
-            slideEffect();
-        }, rnd(1750,1751));
-
+    $(document).ready(function() {
+        var checked = false;
+        $("#selectall").click(function() {
+            if (checked == false) {
+                $(".form-check-input").prop("checked", true);
+                checked = true;
+            }
+            else{
+                $(".form-check-input").prop("checked", false);
+                checked = false;
+            }
+        });
     });
-    //End FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
+
+    function validate(input) {
+        var val = input;
+        val = val.replace(/(^\w+:|^)\/\//, '');;
+        if (/^[a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9](?:\.[a-zA-Z]{2,})+$/.test(val)) {
+            return true;
+        } else {
+            alert("This dork requires at least a domain name to run. Please retry the query.")
+            return false;
+        }
+    }
+
+    function getselected(){
+        var query = "https://www.google.com/search?q=";
+
+        $('.form-check-input:checked').each(function() {
+            query += "site:" + $(this).val() + " | ";
+        });
+        query = query.slice(0, -1);
+        query = query.slice(0, -1);
+        query = (query + " ");
+        return query;
+
+    }
+
+    function search(query)
+    {
+        selected = getselected();
+        if (query== "") {
+            alert ("Keyword can't be empty")
+        }
+        if (!selected.includes("|")) {
+            alert ("Please select at least one paste site")
+        }
+        else {
+            query = selected + " intext:" + query;
+            window.open(query, '_blank');
+        }
+    }
+
 </script>
 </body>
 </html>

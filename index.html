@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Daybreak Cyber LLC
-Austin Martin -> amartin@amartinec.com -->
+<!-- Austin Martin -> amartin@amartinec.com -->
     <head>
         <meta charset="UTF-8">
         <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -11,7 +10,7 @@ Austin Martin -> amartin@amartinec.com -->
         <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
-        <title>Daybreak Cyber</title>
+        <title>amartinsec</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <!-- jQuery library -->
@@ -34,14 +33,8 @@ Austin Martin -> amartin@amartinec.com -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="osint.html">OSINT Tool</a></li>
-                            <li><a href="#">Blog</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="osint.html">OSINT Tool</a></li>
+                    <li><a href="#">Blog</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -55,7 +48,7 @@ Austin Martin -> amartin@amartinec.com -->
             <div class="hack-slides">
                 <div class="slide">
                     <img src="daybreaktransparent.png" id="image">
-                    <p style="padding-top: 10px">Daybreak Cyber</p>
+                    <p style="padding-top: 10px">amartinsec</p>
                 </div>
             </div>
 
@@ -77,7 +70,6 @@ Austin Martin -> amartin@amartinec.com -->
                         for(var i=0;i<text.length;i++) {
                             finalWord += text[i] == ' ' ? ' ' : getRandomLetter()
                         }
-
                         return finalWord
                     }
 
@@ -109,7 +101,7 @@ Austin Martin -> amartin@amartinec.com -->
                             if(canChange) {
                                 count++
                             }
-                            if(globalCount >= 4) {
+                            if(globalCount >= 7) {
                                 canChange = true
                             }
                             if(count>=INITIAL_WORD.length) {
@@ -124,12 +116,6 @@ Austin Martin -> amartin@amartinec.com -->
 
                     }
                     init()
-
-
-
             </script>
-
-
-
     </body>
 </html>
