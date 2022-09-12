@@ -141,9 +141,7 @@ ul.nav a:hover {
     background-color: black;
 }
 
-a {
-    background-color: black;
-}
+
 .navbar-nav li.active > a {
     background-color: black;
 
@@ -339,4 +337,11 @@ html{
     opacity: 0%;
     animation: easyload .2s;
     opacity: 100%;
+}
+
+#navb, .anc{
+    color: rgba(255, 255, 255, .7);
+    font-family: "Consolas";
+    font-size: 18px;
+    margin: 15px;
 }

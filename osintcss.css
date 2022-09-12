@@ -134,9 +134,7 @@ body {
 }
 
 
-html {
-    overflow: auto;
-}
+
 
 ul.nav a:hover {
     background-color: black;
@@ -299,4 +297,11 @@ a {
     animation: easyload .2s;
     opacity: 100%;
 
+}
+
+#navb, .anc{
+    color: rgba(255, 255, 255, .7);
+    font-family: "Consolas";
+    font-size: 18px;
+    margin: 15px;
 }
