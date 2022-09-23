@@ -92,7 +92,7 @@ body{
     display: block;
 }
 
-.btn{
+.btn-primary{
     margin-bottom: 10px !important;
 }
 
@@ -302,4 +302,9 @@ a {
     font-family: "Consolas";
     font-size: 18px;
     margin: 15px;
+}
+
+.dropdown-menu>li>a {
+    color: rgba(255, 255, 255, .7);
+    font-size: 18px;
 }
