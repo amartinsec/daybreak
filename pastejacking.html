@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function setClipboard(text) {
+            const type = "text/plain";
+            const blob = new Blob([text], { type });
+            const data = [new ClipboardItem({ [type]: blob })];
+
+            navigator.clipboard.write(data).then(
+                () => {
+                    /* success */
+                },
+                () => {
+                    /* failure */
+                }
+            );
+        }
+        setClipboard("foo");
+    </script>
+</head>
+<body>
+<input type="text" id="target" size="80">
+
+</body>
+</html>
