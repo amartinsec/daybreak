@@ -25,8 +25,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="signtcss.css">
+    <link rel="stylesheet" href="icsspoof.css">
 
 </head>
 <body>
@@ -67,79 +66,9 @@
     </div>
 </nav>
 
-<!---------END NAV BAR ---------------------->
-<div class="d-flex">
-    <!-- The sidebar -->
-    <div class="sidebar">
-        <a class="dork" href="osint.html">Google Dorks</a>
-        <a class="signt" id="signtlink" href="signt.html">Reverse Phone/Address</a>
-        <a class="lp" href="lp.html">Reverse License Plate</a>
-        <a class="exif" href="exif.html">Exif Viewer</a>
-        <a  class="paste" href="paste.html">Paste Tools</a>
-        <a class="ransom" id="ransomlink" href="ransom.html">Ransomware</a>
-        <a class="dns" href="dns.html">DNS</a>
-        <a class="outages" id="outageslink" href="outages.html">Outages</a>
-        <a class="crypto" href="crypto.html">Cryptocurrency</a>
+
+<div style="text-align: center; font-size: 300%;">Coming Soon</div>
 
 
-    </div>
-
-    <!-- Page content -->
-    <div id="dorking" class="d-flex flex-column">
-        <form id="dorkform">
-            <h3>Reverse Phone/Address Lookup</h3>
-            <br>
-            <div class="form-group">
-                <label for="txtbox" class="form-label">Reverse Phone Search</label>
-                <div class="input-group">
-                    <input type="tel" class="form-control" id="txtbox" name="phonebox" placeholder="eg. 123-456-7890 or 1234567890">
-                    <span class="input-group-btn">
-                        <button class="btn btn-outline-secondary helpbutton" type="button" id="helpbutton" onclick="phone(phonebox.value)">Search</button>
-                    </span>
-                </div>
-                <br>
-
-                <label for="txtbox" class="form-label">Reverse Name Search</label>
-                <div class="form-inline" style="margin:0; width: 100%">
-                        <input class="form-control" id="txtbox2" name="namebox1" placeholder="Name">
-                        <input class="form-control" id="txtbox5" name="namebox4" placeholder="Zip">
-
-                            <button class="btn btn-outline-secondary" type="button" id="helpbutton2" style="position: absolute" onclick="namesearch(namebox1.value, namebox4.value)">Search</button>
-
-                    </div>
-                </div>
-            <br>
-        </form>
-    </div>
-</div>
-
-<script type="text/javascript">
-    function telephoneCheck(str) {
-        var a = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(str);
-        return a;
-    }
-
-    function phone(number)
-    {
-        if (telephoneCheck(number)){
-            window.open('https://www.truepeoplesearch.com/resultphone?phoneno=' + number, '_blank');
-        }
-        else {
-            alert("Please enter a valid phone number");
-        }
-    }
-
-    function namesearch(name, zip)
-    {
-        if (name == "")
-        {
-            alert ("Please enter a name")
-        }
-        else {
-            window.open('https://www.truepeoplesearch.com/results?name=' + name + "&citystatezip=" + zip, '_blank');
-        }
-    }
-
-</script>
 </body>
 </html>

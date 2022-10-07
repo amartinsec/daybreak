@@ -2,14 +2,14 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <!-- Austin Martin amartin@amartinec.com -->
 <head> <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-H50CYGN75Y"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-H50CYGN75Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-H50CYGN75Y');
-</script>
+        gtag('config', 'G-H50CYGN75Y');
+    </script>
     <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -26,7 +26,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="outagescss.css">
+    <link rel="stylesheet" href="lp.css">
 
 </head>
 <body>
@@ -54,13 +54,13 @@
         <div class="collapse navbar-collapse navbar-right" id="navb">
 
             <div class="dropdown" style="position: relative"> </div>
-                <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
-                        style="background-color: transparent; border-color: transparent; font-family: Consolas; font-size: 18px; color: rgba(255, 255, 255, .7);">Tools
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu" style="right: unset; top: unset;" >
-                    <li><a href="osint.html">OSINT</a></li>
-<li><a href="icsspoof.html">Spoofed .ics Generator</a></li>
-                </ul>
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown"
+                    style="background-color: transparent; border-color: transparent; font-family: Consolas; font-size: 18px; color: rgba(255, 255, 255, .7);">Tools
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu" style="right: unset; top: unset;" >
+                <li><a href="osint.html">OSINT</a></li>
+                <li><a href="icsspoof.html">Spoofed .ics Generator</a></li>
+            </ul>
             <a target="_blank" rel="noopener noreferrer" href="https://blog.amartinsec.com/" class="anc">Blog</a>
             <a href="contact.html" class="anc">Contact</a>
         </div>
@@ -72,7 +72,7 @@
     <!-- The sidebar -->
     <div class="sidebar">
         <a class="dork" href="osint.html">Google Dorks</a>
-        <a class="signt" href="signt.html">Reverse Phone/Address</a>
+        <a class="signt" id="signtlink" href="signt.html">Reverse Phone/Address</a>
         <a class="lp" href="lp.html">Reverse License Plate</a>
         <a class="exif" href="exif.html">Exif Viewer</a>
         <a  class="paste" href="paste.html">Paste Tools</a>
@@ -87,61 +87,59 @@
     <!-- Page content -->
     <div id="dorking" class="d-flex flex-column">
         <form id="dorkform">
+            <h3>Reverse Phone/Address Lookup</h3>
+            <br>
             <div class="form-group">
-                <label for="txtbox" class="form-label">Target Domain/URL</label>
+                <label for="txtbox" class="form-label">Reverse Phone Search</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="txtbox" name="txtbox" onkeyup="saveValue(this);" >
+                    <input type="tel" class="form-control" id="txtbox" name="phonebox" placeholder="eg. 123-456-7890 or 1234567890">
                     <span class="input-group-btn">
-                                <button class="btn btn-outline-secondary" type="button" id="helpbutton" onclick="showtutmodal()">Learn How To Perform Google Dorking</button>
-                            </span>
+                        <button class="btn btn-outline-secondary helpbutton" type="button" id="helpbutton" onclick="phone(phonebox.value)">Search</button>
+                    </span>
                 </div>
-                <div id="emailHelp" class="form-text"></div>
+                <br>
+
+                <label for="txtbox" class="form-label">Reverse Name Search</label>
+                <div class="form-inline" style="margin:0; width: 100%">
+                    <input class="form-control" id="txtbox2" name="namebox1" placeholder="Name">
+                    <input class="form-control" id="txtbox5" name="namebox4" placeholder="Zip">
+
+                    <button class="btn btn-outline-secondary" type="button" id="helpbutton2" style="position: absolute" onclick="namesearch(namebox1.value, namebox4.value)">Search</button>
+
+                </div>
             </div>
-
-            <!--MODAL WARNING FOR NON DORK -->
-
-            <!--END MODAL WARNING FOR NON DORK -->
-
-            <!-- START OF QUERIES ----------------------------------------------------------------------->
             <br>
         </form>
     </div>
 </div>
 
 <script type="text/javascript">
-    //SCRIPT FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
-    $(function() {
-        var rnd = function(min, max) {
-            return Math.random() * (max - min) + min;
-        };
+    function telephoneCheck(str) {
+        var a = /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/.test(str);
+        return a;
+    }
 
-        $(".hack-slider").height($(".slide:nth-child(1)", this).height());
-        $(".slide:first-child", ".hack-slider").addClass('hack first');
-        $(".slide:last-child", ".hack-slider").addClass('last')
-
-        function slideEffect() {
-            var timer = setInterval(function() {
-                var rdH = parseInt(rnd(40, $(".hack").height())),
-                    rdW = parseInt(rnd(800, $(".hack").width() * 2)),
-                    rdT = parseInt(rnd(0, $(".hack").height() / 2)),
-                    rdL = parseInt(rnd(-500, $(".hack").width() / 2) + 200);
-                $(".hack-slider .shapes").append('<span class="shape ' + rdH + ' ' + rdW + '" style="top:' + rdT + 'px; left:' + rdL + 'px; width:' + rdW + 'px;height:' + rdH + 'px;"></span>')
-                $("." + rdH + "." + rdW).each(function() {
-                    $(this).delay(50).slideUp(0, function() {
-                        $(this).remove();
-                    });
-                });
-            }, 100);
-            setTimeout(function() {
-                clearInterval(timer)
-            }, rnd(650,650));
+    function phone(number)
+    {
+        if (telephoneCheck(number)){
+            window.open('https://www.truepeoplesearch.com/resultphone?phoneno=' + number, '_blank');
         }
-        window.setInterval(function() {
-            slideEffect();
-        }, rnd(1750,1751));
+        else {
+            alert("Please enter a valid phone number");
+        }
+    }
 
-    });
-    //End FOR DAYBREAK EFFECT ----------------------------------------------------------------------------------
+    function namesearch(name, zip)
+    {
+        if (name == "")
+        {
+            alert ("Please enter a name")
+        }
+        else {
+            window.open('https://www.truepeoplesearch.com/results?name=' + name + "&citystatezip=" + zip, '_blank');
+        }
+    }
+
 </script>
 </body>
 </html>

@@ -134,6 +134,10 @@ body {
 }
 
 
+#txtbox2, #txtbox3 {
+
+}
+
 html {
     overflow: auto;
 }
@@ -219,7 +223,7 @@ a {
     color: black;
 }
 
-#helpbutton{
+#helpbutton, #helpbutton2{
     background-color: #337ab7;
     border-color: #337ab7;
     color: white;
@@ -236,7 +240,7 @@ a {
     content: "\e079";
 }
 
-#dwlink{
+#signtlink{
     position: relative;
 }
 
@@ -249,7 +253,7 @@ a {
     100%  { width: 100%; }
 }
 
-#dwlink::before {
+#signtlink::before {
     content: '';
     display: block;
     position: absolute;
@@ -271,13 +275,14 @@ a {
     100%  { opacity: 100%; }
 }
 
-#dorkform {
+#dorkform{
     opacity: 0%;
     animation: easyload .2s;
     opacity: 100%;
 
 }
-   /* width */
+
+/* width */
 ::-webkit-scrollbar {
     width: 10px;
 }
